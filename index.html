@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>pedromattar.io</title>
+    <title>Change Theme</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-SU4vceq/3f4O1Sp/NdymhG0Jw5a5G5+b0xJxg5vm5Y5XeM+a5iaJ0Zz5v5gAe20EJxrh5G5iv5se5mp5l5g==" crossorigin="anonymous" />
     <style>
       /* Add styles for the default (light) theme */
       body {
         background: linear-gradient(90deg, #ff9a9e, #fad0c4);
         background-size: 300% 300%;
-        animation: gradient 5s ease infinite;
+        animation: gradient 10s ease infinite;
         font-family: 'Montserrat', sans-serif;
         text-align: center;
         margin: 0;
@@ -65,14 +66,24 @@
   </head>
   <body>
     <h1>Change Theme</h1>
-    <button id="theme-switch">Toggle Theme</button>
-    
+    <button id="theme-switch">
+       <i id='icon' class="fas fa-sun"></i>
+    </button>
+
     <script>
       // Get the theme switch button
       var themeSwitch = document.getElementById("theme-switch");
+      var icon = document.getElementById("icon");
       // Add an event listener to handle theme switching
       themeSwitch.addEventListener("click", function() {
         document.body.classList.toggle("dark-theme");
+        if (icon.classList.contains("fa-sun")) {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        } else {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        }
       });
     </script>
   </body>
