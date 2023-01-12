@@ -2,21 +2,63 @@
 <html>
   <head>
     <title>Change Theme</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-SU4vceq/3f4O1Sp/NdymhG0Jw5a5G5+b0xJxg5vm5Y5XeM+a5iaJ0Zz5v5gAe20EJxrh5G5iv5se5mp5l5g==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
-    
-    
     <style>
       /* Add styles for the default (light) theme */
       body {
-        background-color: white;
-        color: black;
+        background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+        background-size: 300% 300%;
+        animation: gradient 10s ease infinite;
         font-family: 'Montserrat', sans-serif;
+        text-align: center;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
       }
-      
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
       /* Add styles for the dark theme */
       .dark-theme {
-        background-color: black;
+        background: #333;
+        color: white;
+      }
+      /* Centralize the text */
+      h1 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+      }
+      /* Center the button */
+      #theme-switch {
+        position: absolute;
+        top: 75%;
+        left: 50%;
+        transform: translateX(-50%);
+        background: transparent;
+        color: #333;
+        border: 2px solid #333;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+      }
+      /* Add cursor animation */
+      #theme-switch:hover {
+        background: #333;
         color: white;
       }
     </style>
@@ -28,7 +70,6 @@
     <script>
       // Get the theme switch button
       var themeSwitch = document.getElementById("theme-switch");
-      
       // Add an event listener to handle theme switching
       themeSwitch.addEventListener("click", function() {
         document.body.classList.toggle("dark-theme");
