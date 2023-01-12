@@ -1,120 +1,33 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Upload Dataset</title>
-  <style>
-    /* 
-      Add some basic styling to center the buttons and handle theme switching
-    */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #F0F8FF;
-        color: #333;
-    }
-    /* The container will center the buttons */
-    .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-    }
-    /* Style the upload form */
-    #upload-form {
-        text-align: center;
-    }
-    /* Style the file input */
-    input[type=file] {
-        display: none;
-    }
-    /* Style the upload and select file buttons */
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        margin: 20px;
-        background-color: #00BFFF;
-        color: #fff;
-        border-radius: 5px;
-        text-decoration: none;
-    }
-    /* Style the message displayed after the file is uploaded */
-    #status {
-        margin-top: 20px;
-        font-size: 18px;
-    }
-    /* Style for the theme
-    /* Style for the theme-switch button */
-    #theme-switch {
-        position: absolute;
-        top: 20px;
-        right: 20px;
-        background: transparent;
-        border: none;
-        color: #333;
-        font-size: 1rem;
-        cursor: pointer;
-    }
-    /* Add the dark theme styles */
-    .dark-theme {
-        background-color: #333;
-        color: #fff;
-    }
-    /* Add the dark theme styles to the form*/
-    .dark-theme #upload-form {
-        background: #555;
-        padding: 20px;
-        border-radius: 10px;
-    }
-    /* Add the dark theme styles to the buttons */
-    .dark-theme .btn {
-        background-color: #666;
-    }
-  </style>
-</head>
-<body>
-    <button id="theme-switch">Change theme</button>
-    <div class="container">
-        <form id="upload-form" method="post" enctype="multipart/form-data" action="upload.php">
-            <h1>Upload your dataset</h1>
-            <input type="file" name="dataset" id="dataset">
-            <label for="dataset" class="btn">Select File</label>
-            <input type="submit" value="Upload" class="btn">
-            <div id="status"></div>
-        </form>
-    </div>
+  <head>
+    <title>Change Theme</title>
+    <style>
+      /* Add styles for the default (light) theme */
+      body {
+        background-color: white;
+        color: black;
+      }
+      
+      /* Add styles for the dark theme */
+      .dark-theme {
+        background-color: black;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Change Theme</h1>
+    <button id="theme-switch">Toggle Theme</button>
+    
     <script>
-    /* 
-        Add some javascript to handle the file input, show a message after the file is uploaded and add theme switch feature
-    */
-    function handleUpload(event){
-        event.preventDefault();
-        var file = document.querySelector('input[type=file]').files[0];
-        var form = event.target;
-        var formData = new FormData(form);
-        var xhr = new XMLHttpRequest();
-        xhr.open('POST', form.getAttribute('action'));
-        xhr.onload = function(){
-            if(xhr.status === 200){
-                document.getElementById('status').innerHTML = 'Upload successful!';
-            }else{
-                document.getElementById('status').innerHTML = 'Upload failed.';
-            }
-        }
-        xhr.send(formData);
-    }
-
-    //Add event listener to handle file upload on form submit
-    var form = document.getElementById('upload-form');
-    form.addEventListener('submit', handleUpload);
-
-    //Add event listener to handle theme switch
-    var themeSwitch = document.getElementById('theme-switch');
-    themeSwitch.addEventListener('click', function(){
-        document.body.classList.toggle('dark-theme');
-    });
+      // Get the theme switch button
+      var themeSwitch = document.getElementById("theme-switch");
+      
+      // Add an event listener to handle theme switching
+      themeSwitch.addEventListener("click", function() {
+        document.body.classList.toggle("dark-theme");
+      });
     </script>
-</body>
+  </body>
 </html>
-
-   
