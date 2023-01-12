@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Upload Dataset</title>
+  <style>
+    /* 
+      Add some basic styling to make the page look nice
+      Feel free to add your own custom styles
+    */
+    body{
+        background-color: #F0F8FF;
+        font-family: Arial, sans-serif;
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+    .container{
+        width: 80%;
+        margin: 0 auto;
+        text-align: center;
+        padding: 10px;
+    }
+    h1{
+        margin-top: 30px;
+        color: #00BFFF;
+    }
+    #upload-form{
+        margin-top: 50px;
+    }
+    input[type=file]{
+        display: none;
+    }
+    .btn{
+        display: inline-block;
+        padding: 10px 20px;
+        margin: 20px;
+        background-color: #00BFFF;
+        color: #fff;
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    #status{
+        margin-top: 20px;
+        font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Upload your dataset</h1>
+        <form id="upload-form" method="post" enctype="multipart/form-data" action="upload.php">
+            <input type="file" name="dataset" id="dataset">
+            <label for="dataset" class="btn">Select File</label>
+            <input type="submit" value="Upload" class="btn">
+            <div id="status"></div>
+        </form>
+    </div>
+    <script>
+      /* 
+        Add some javascript to handle the file input and show a message after the file is uploaded
+        Feel free to add your own custom scripts 
+      */
+      function handleUpload(event){
+        event.preventDefault();
+        var file = document.querySelector('input[type=file]').files[0];
+        var form = event.target;
+        var formData = new FormData(form);
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', form.getAttribute('action'));
+        xhr.onload = function(){
+            if(xhr.status === 200){
+                document.getElementById('status').innerHTML = 'Upload successful!';
+            }else{
+                document.getElementById('status').innerHTML = 'Upload failed.';
+            }
+        }
+        xhr.send(formData);
+      }
+      var form = document.getElementById('upload-form');
+      form.addEventListener('submit', handleUpload);
+    </script>
+</body>
+</html>
