@@ -7,53 +7,6 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <style>
       /* Add styles for the default (light) theme */
-      .face {
-        position: relative;
-        width: 200px;
-        height: 200px;
-        margin: 50px auto;
-        border-radius: 50%;
-        background: #fff;
-      }
-
-      .eye {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background: #000;
-        top: 60px;
-      }
-      .left-eye {
-        left: 60px;
-      }
-
-      .right-eye {
-        left: 130px;
-      }
-
-      .nose {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        border-radius: 50%;
-        background: #000;
-        top: 100px;
-        left: 110px;
-      }
-
-      .mouth {
-        position: absolute;
-        width: 60px;
-        height: 20px;
-        border-radius: 50%;
-        background: #000;
-        top: 130px;
-        left: 95px;
-      }
-
-
-
 
       body {
         background: linear-gradient(90deg, #ff9a9e, #fad0c4);
@@ -124,16 +77,8 @@
     <button id="theme-switch">
        <i id='icon' class="fas fa-sun"></i>
     </button>
-    
-     <div class="face">
-        <div class="eye left-eye"></div>
-        <div class="eye right-eye"></div>
-        <div class="nose"></div>
-        <div class="mouth"></div>
-    </div>
 
 
-    
     
     <script>
       // Get the theme switch button
@@ -152,20 +97,6 @@
       });
       let face = document.querySelector('.face');
 
-face.addEventListener('mousemove', (e) => {
-  let x = e.pageX - face.offsetLeft;
-  let y = e.pageY - face.offsetTop;
-
-  let xCoor = x - face.offsetWidth / 2;
-  let yCoor = y - face.offsetHeight / 2;
-
-  let leftEye = document.querySelector('.left-eye');
-  let rightEye = document.querySelector('.right-eye');
-  let nose = document.querySelector('.nose');
-  let mouth = document.querySelector('.mouth');
-
-  leftEye.style.transform = `translate(${xCoor * 0.05}px, ${yCoor * 0.05}px)`;
-  rightEye.style.transform = `translate($
 
       
     </script>
