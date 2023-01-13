@@ -3,12 +3,15 @@
   <head>
     <title>My Page</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <style>
       /* Add styles for the default (light) theme */
       body {
         background: linear-gradient(90deg, #ff9a9e, #fad0c4);
         background-size: 300% 300%;
         animation: gradient 8s ease infinite;
+        font-family: 'Montserrat', sans-serif;
         margin: 0;
         padding: 0;
         min-height: 100vh;
@@ -16,6 +19,26 @@
         justify-content: center;
         align-items: center;
       }
+      /* Add styles for the dark theme */
+      .dark-theme {
+        background: #333;
+        color: white;
+      }
+      /* Add title */
+      .title {
+        font-size: 4rem;
+        margin-left: 2rem;
+      }
+      /* Add black circle falling effect */
+      #black-circle {
+        width: 10rem;
+        height: 10rem;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        animation: falling 8s ease infinite;
+      }
+      /* Add keyframe for background gradient */
       @keyframes gradient {
         0% {
           background-position: 0% 50%;
@@ -27,41 +50,23 @@
           background-position: 0% 50%;
         }
       }
-      /* Add styles for the dark theme */
-      .dark-theme {
-        background: #333;
-        color: white;
+      /* Add keyframe for black circle falling effect */
+      @keyframes falling {
+        0% {
+          top: -10rem;
+        }
+        100% {
+          top: 100%;
+        }
       }
-      /* Add title */
-      .title {
-        font-size: 4rem;
-        text-align:center;
-        margin-bottom:2rem;
-      }
-      /* Add create button */
-      #theme-switch {
-        background-color: white;
-        color: #333;
-        border: none;
-        border-radius: 50%;
-        width: 6rem;
-        height: 6rem;
-        font-size: 2rem;
-        cursor: pointer;
-        margin-top:2rem;
-      }
-      
     </style>
   </head>
-<body>
-  <div id="header">
+  <body>
     <h1 class="title">Big Title</h1>
-  </div>
-  <h1>Change Theme</h1>
-  <button id="theme-switch">
+    <h2 class="subtitle">Change Theme</h2>
+    <button id="theme-switch">
        <i id='icon' class="fas fa-sun"></i>
     </button>
-
     <script>
       // Get the theme switch button
       var themeSwitch = document.getElementById("theme-switch");
@@ -69,7 +74,7 @@
       // Add an event listener to handle theme switching
       themeSwitch.addEventListener("click", function() {
         document.body.classList.toggle("dark-theme");
-        if (icon.classList.contains("fa-sun")) {
+                if (icon.classList.contains("fa-sun")) {
             icon.classList.remove("fa-sun");
             icon.classList.add("fa-moon");
         } else {
@@ -80,3 +85,4 @@
     </script>
   </body>
 </html>
+
