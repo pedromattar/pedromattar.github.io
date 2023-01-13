@@ -71,6 +71,78 @@
           top: 100%;
         }
       }
+      
+      .timeline {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.event-date {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.event-description {
+  font-size: 14px;
+  width: 80%;
+}
+
+.event-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  left: -5px;
+top: 5px;
+}
+
+.timeline-line {
+width: 2px;
+height: 100%;
+background-color: #000;
+position: absolute;
+left: -10px;
+top: 0;
+}
+
+/* Add styles for the line and dots */
+.timeline::before {
+content: '';
+position: absolute;
+left: 50%;
+top: 0;
+width: 2px;
+height: 100%;
+background-color: #000;
+}
+.event::before {
+content: '';
+position: absolute;
+left: -10px;
+top: 5px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background-color: #000;
+}
+
+      
+      
+      
+      
+      
     </style>
   </head>
   
@@ -85,6 +157,24 @@
     <button id="theme-switch">
        <i id='icon' class="fas fa-sun"></i>
     </button>
+    <div class="timeline">
+  <div class="event">
+    <div class="event-date">January 2021</div>
+    <div class="event-description">Event description</div>
+    <div class="event-dot"></div>
+  </div>
+  <div class="event">
+    <div class="event-date">December 2020</div>
+    <div class="event-description">Event description</div>
+    <div class="event-dot"></div>
+  </div>
+  <div class="event">
+    <div class="event-date">November 2020</div>
+    <div class="event-description">Event description</div>
+    <div class="event-dot"></div>
+  </div>
+  <div class="timeline-line"></div>
+</div>
 
 
     
