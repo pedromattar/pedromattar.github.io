@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+    <style>
+      /* Add styles for the default (light) theme */
+
+      body {
+        background: linear-gradient(90deg, #ff9a9e, #fad0c4);
+        background-size: 300% 300%;
+        animation: gradient 8s ease infinite;
+        font-family: 'Montserrat', sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      /* Add styles for the dark theme */
+      .dark-theme {
+        background: #333;
+        color: white;
+      }
+      
+      #theme-switch {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      border-radius: 50%;
+      width: 35px;
+      height: 35px;
+      padding: 0;
+      }
+      
+      /* Add title */
+      .title {
+        font-size: 4rem;
+        margin-left: 2rem;
+      }
+      /* Add black circle falling effect */
+      #black-circle {
+        width: 10rem;
+        height: 10rem;
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        animation: falling 8s ease infinite;
+      }
+      /* Add keyframe for background gradient */
+      @keyframes gradient {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      /* Add keyframe for black circle falling effect */
+      @keyframes falling {
+        0% {
+          top: -10rem;
+        }
+        100% {
+          top: 100%;
+        }
+      }
+      
+      .timeline {
+  position: relative;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.event {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  position: relative;
+}
+
+.event-date {
+  font-size: 18px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.event-description {
+  font-size: 14px;
+  width: 80%;
+}
+
+.event-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #000;
+  position: absolute;
+  left: -5px;
+top: 5px;
+}
+
+.timeline-line {
+width: 2px;
+height: 100%;
+background-color: #000;
+position: absolute;
+left: -10px;
+top: 0;
+}
+
+/* Add styles for the line and dots */
+.timeline::before {
+content: '';
+position: absolute;
+left: 50%;
+top: 0;
+width: 2px;
+height: 100%;
+background-color: #000;
+}
+.event::before {
+content: '';
+position: absolute;
+left: -10px;
+top: 5px;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background-color: #000;
+}
+
+      
+      
+      
+      
+      
+    </style>
+  </head>
+  
+  
+  
+  
+  
+  
+  <body>
+
+    <button id="theme-switch">
+       <i id='icon' class="fas fa-sun"></i>
+    </button>
+    <div class="timeline">
+  <div class="event">
+    <div class="event-date">January 2021</div>
+    <div class="event-description">Event description</div>
+    <div class="event-dot"></div>
+  </div>
+  <div class="event">
+    <div class="event-date">December 2020</div>
+    <div class="event-description">Event description</div>
+    <div class="event-dot"></div>
+  </div>
+  <div class="event">
+    <div class="event-date">November 2020</div>
+    <div class="event-description">Event description</div>
+    <div class="event-dot"></div>
+  </div>
+  <div class="timeline-line"></div>
+</div>
+
+
+    
+    <script>
+      // Get the theme switch button
+      var themeSwitch = document.getElementById("theme-switch");
+      var icon = document.getElementById("icon");
+      // Add an event listener to handle theme switching
+      themeSwitch.addEventListener("click", function() {
+        document.body.classList.toggle("dark-theme");
+                if (icon.classList.contains("fa-sun")) {
+            icon.classList.remove("fa-sun");
+            icon.classList.add("fa-moon");
+        } else {
+            icon.classList.remove("fa-moon");
+            icon.classList.add("fa-sun");
+        }
+      });
+
+    </script>
+  </body>
+</html>
+
+
