@@ -82,16 +82,16 @@
   <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
   <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
 
-  <div class="contador">
+<div class="contador" style="display: inline-block;">
     <label for="numero"></label>
     <button type="button" onclick="aumentarNumero()">↑</button>
     <input type="text" id="numero" value="0">
     <button type="button" onclick="diminuirNumero()">↓</button>
-  </div>
+</div>
 
-  <label for="bebida" placeholder="Bebida"></label>
-  <input type="text" id="bebida">
-  <br>
+<label for="bebida" style="display: inline-block; margin-left: 10px;">Bebida:</label>
+<input type="text" id="bebida" style="display: inline-block;">
+
 
   <button type="submit" onclick="enviarFormulario()">OK</button>
 </form>
