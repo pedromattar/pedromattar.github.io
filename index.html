@@ -18,6 +18,35 @@
         padding: 20px;
         border-radius: 10px;
       }
+      .contador {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 20px;
+      }
+      .contador label {
+        margin-right: 10px;
+        font-size: 20px;
+      }
+      .contador button {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 50%;
+        background-color: #ffffff;
+        color: #000000;
+        border: none;
+        box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+      .contador button:hover {
+        background-color: #cccccc;
+      }
+      #bebida {
+        margin-top: 20px;
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 10px;
+      }
     </style>
   </head>
   <body>
@@ -34,20 +63,21 @@
       <input type="radio" id="paus" name="naipe" value="paus">
       <label for="paus">Paus</label><br><br>
       <button type="button" onclick="selecionarNaipe()">OK</button>
+      <div class="contador">
+        <label for="numero">Número:</label>
+        <button type="button" onclick="aumentarNumero()">▲</button>
+        <input type="text" id="numero" name="numero" value="0" readonly>
+        <button type="button" onclick="diminuirNumero()">▼</button>
+      </div>
+      <input type="text" id="bebida" name="bebida" placeholder="Bebida">
     </form>
     <script>
+      var numero = 0;
+
       function selecionarNaipe() {
         var nome = document.getElementById("nome").value;
         var naipeSelecionado = document.querySelector('input[name="naipe"]:checked');
         if (nome == "") {
           alert("Por favor, insira o seu nome.");
         } else if (naipeSelecionado == null) {
-          alert("Por favor, selecione um naipe.");
-        } else {
-          var naipe = naipeSelecionado.value;
-          window.location.href = "selecionado.html?naipe=" + naipe + "&nome=" + nome;
-        }
-      }
-    </script>
-  </body>
-</html>
+          alert("Por favor, selec
