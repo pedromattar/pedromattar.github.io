@@ -97,6 +97,8 @@
       <button type="submit" onclick="enviarFormulario()">OK</button>
     </form>
 
+    <div id="info"></div>
+    
     <script>
       var naipeSelecionado = "";
 
@@ -108,13 +110,20 @@
   naipeSelecionado = naipe;
   document.getElementById(naipe).classList.add("selecionado");
 }
-
+      
+      
 function enviarFormulario() {
-console.log("Nome: " + document.getElementById("nome").value);
-console.log("Bebida: " + document.getElementById("bebida").value);
-console.log("Naipe selecionado: " + naipeSelecionado);
-console.log("Número selecionado: " + document.getElementById("numero").value);
+  var nome = document.getElementById("nome").value;
+  var bebida = document.getElementById("bebida").value;
+  var numero = document.getElementById("numero").value;
+
+  var info = document.getElementById("info");
+  info.innerHTML = "Nome: " + nome + "<br>" +
+                   "Bebida: " + bebida + "<br>" +
+                   "Naipe selecionado: " + naipeSelecionado + "<br>" +
+                   "Número selecionado: " + numero;
 }
+
 
   function aumentarNumero() {
     var inputNumero = document.getElementById("numero");
