@@ -1,112 +1,56 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Minha Página Web</title>
-    <meta charset="UTF-8">
-    <style>
-      body {
-        background-color: #a1c4fd;
-        background-image: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-      }
-
-      label {
-        font-size: 20px;
-        margin-bottom: 10px;
-      }
-
-      input[type=text] {
-        padding: 10px;
-        font-size: 16px;
-        border-radius: 5px;
-        border: none;
-        margin-bottom: 10px;
-      }
-
-      button {
-        background-color: #4CAF50;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-
-      button:hover {
-        opacity: 0.8;
-      }
-
-      .contador {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        margin-top: 20px;
-      }
-
-      .contador label {
-        font-size: 24px;
-        margin: 0 10px;
-      }
-
-      .contador input[type=text] {
-        padding: 10px;
-        font-size: 24px;
-        border-radius: 5px;
-        border: none;
-        margin: 0 10px;
-        width: 50px;
-        text-align: center;
-      }
-
-      .contador button {
-        font-size: 24px;
-        padding: 10px;
-      }
-    </style>
-  </head>
-
+<head>
+  <title>Formulário</title>
+  <style>
+    .container {
+      display: flex;
+      flex-direction: row;
+    }
+    #formulario {
+      margin-right: 20px;
+    }
+  </style>
+</head>
 <body>
+  <div class="container">
     <form id="formulario" onsubmit="return false;">
-      <label for="nome" placeholder="Nome" ></label>
+      <label for="nome">Nome:</label>
       <input type="text" id="nome" required>
       <br>
-        <label for="naipe">Naipe:</label>
-  <br>
-  <button type="button" onclick="selecionarNaipe('copas')">Copas</button>
-  <button type="button" onclick="selecionarNaipe('espadas')">Espadas</button>
-  <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
-  <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
 
-<div class="contador" style="display: inline-block;">
-    <label for="numero"></label>
-    <button type="button" onclick="aumentarNumero()">↑</button>
-    <input type="text" id="numero" value="0">
-    <button type="button" onclick="diminuirNumero()">↓</button>
-</div>
+      <label for="naipe">Naipe:</label>
+      <br>
+      <button type="button" onclick="selecionarNaipe('copas')">Copas</button>
+      <button type="button" onclick="selecionarNaipe('espadas')">Espadas</button>
+      <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
+      <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
 
-<label for="bebida" style="display: inline-block; margin-left: 10px;">Bebida:</label>
-<input type="text" id="bebida" style="display: inline-block;">
+      <div class="contador">
+        <label for="numero">Número:</label>
+        <button type="button" onclick="aumentarNumero()">↑</button>
+        <input type="text" id="numero" value="0">
+        <button type="button" onclick="diminuirNumero()">↓</button>
+      </div>
 
+      <label for="bebida">Bebida:</label>
+      <input type="text" id="bebida">
+      <br>
 
-  <button type="submit" onclick="enviarFormulario()">OK</button>
-</form>
+      <button type="submit" onclick="enviarFormulario()">OK</button>
+    </form>
 
-<table id="tabela-resultados">
-  <thead>
-    <tr>
-      <th>Nome</th>
-      <th>Naipe</th>
-      <th>Número</th>
-      <th>Bebida</th>
-    </tr>
-  </thead>
-  <tbody>
-  </tbody>
+    <table id="tabela-resultados">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Naipe</th>
+          <th>Número</th>
+          <th>Bebida</th>
+        </tr>
+      </thead>
+      <tbody>
+      </tbody>
 </table>
 
     
