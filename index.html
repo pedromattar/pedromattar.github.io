@@ -97,7 +97,15 @@
       <button type="submit" onclick="enviarFormulario()">OK</button>
     </form>
 
-    <div id="info"></div>
+    <table id="resultados">
+  <tr>
+    <th>Nome</th>
+    <th>Bebida</th>
+    <th>Naipe</th>
+    <th>Número</th>
+  </tr>
+</table>
+
     
     <script>
       var naipeSelecionado = "";
@@ -115,14 +123,22 @@
 function enviarFormulario() {
   var nome = document.getElementById("nome").value;
   var bebida = document.getElementById("bebida").value;
+  var naipeSelecionado = document.querySelector(".naipe.selecionado").id;
   var numero = document.getElementById("numero").value;
 
-  var info = document.getElementById("info");
-  info.innerHTML = "Nome: " + nome + "<br>" +
-                   "Bebida: " + bebida + "<br>" +
-                   "Naipe selecionado: " + naipeSelecionado + "<br>" +
-                   "Número selecionado: " + numero;
+  var tabela = document.getElementById("resultados");
+  var novaLinha = tabela.insertRow(-1);
+  var celulaNome = novaLinha.insertCell(0);
+  var celulaBebida = novaLinha.insertCell(1);
+  var celulaNaipe = novaLinha.insertCell(2);
+  var celulaNumero = novaLinha.insertCell(3);
+
+  celulaNome.innerHTML = nome;
+  celulaBebida.innerHTML = bebida;
+  celulaNaipe.innerHTML = naipeSelecionado;
+  celulaNumero.innerHTML = numero;
 }
+
 
 
   function aumentarNumero() {
