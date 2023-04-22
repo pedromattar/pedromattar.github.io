@@ -70,40 +70,39 @@
     </style>
   </head>
 
-  <body>
+<body>
     <form id="formulario" onsubmit="return false;">
       <label for="nome">Nome:</label>
       <input type="text" id="nome" required>
       <br>
+        <label for="naipe">Naipe:</label>
+  <br>
+  <button type="button" onclick="selecionarNaipe('copas')">Copas</button>
+  <button type="button" onclick="selecionarNaipe('espadas')">Espadas</button>
+  <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
+  <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
 
-      <label for="bebida">Bebida:</label>
-      <input type="text" id="bebida">
-      <br>
+  <div class="contador">
+    <label for="numero">Número:</label>
+    <button type="button" onclick="aumentarNumero()">↑</button>
+    <input type="text" id="numero" value="0">
+    <button type="button" onclick="diminuirNumero()">↓</button>
+  </div>
 
-      <label for="naipe">Naipe:</label>
-      <br>
-      <button type="button" onclick="selecionarNaipe('copas')">Copas</button>
-      <button type="button" onclick="selecionarNaipe('espadas')">Espadas</button>
-      <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
-      <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
+  <label for="bebida">Bebida:</label>
+  <input type="text" id="bebida">
+  <br>
 
-      <div class="contador">
-        <label for="numero">Número:</label>
-        <button type="button" onclick="aumentarNumero()">↑</button>
-        <input type="text" id="numero" value="0">
-        <button type="button" onclick="diminuirNumero()">↓</button>
-      </div>
+  <button type="submit" onclick="enviarFormulario()">OK</button>
+</form>
 
-      <button type="submit" onclick="enviarFormulario()">OK</button>
-    </form>
-
-    <table id="tabela-resultados">
+<table id="tabela-resultados">
   <thead>
     <tr>
       <th>Nome</th>
-      <th>Bebida</th>
       <th>Naipe</th>
       <th>Número</th>
+      <th>Bebida</th>
     </tr>
   </thead>
   <tbody>
