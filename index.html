@@ -3,6 +3,16 @@
 <head>
   <title>Formulário</title>
   <style>
+    
+    
+    .naipe-botao.active {
+  background-color: yellow;
+}
+
+    .destaque {
+      background-color: yellow;
+    }
+
     .container {
       display: flex;
       flex-direction: row;
@@ -21,10 +31,11 @@
 
       <label for="naipe"></label>
       <br>
-      <button type="button" onclick="selecionarNaipe('copas')">Copas</button>
-      <button type="button" onclick="selecionarNaipe('espadas')">Espadas</button>
-      <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
-      <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
+<button type="button" class="naipe-botao" data-naipe="copas">Copas</button>
+<button type="button" class="naipe-botao" data-naipe="espadas">Espadas</button>
+<button type="button" class="naipe-botao" data-naipe="ouros">Ouros</button>
+<button type="button" class="naipe-botao" data-naipe="paus">Paus</button>
+
 
       <div class="contador">
         <label for="numero">Número:</label>
@@ -66,6 +77,17 @@ function selecionarNaipe(naipe) {
   document.getElementById(naipe).classList.add("selecionado");
 }
 
+// Adicione essa linha no começo do arquivo
+const naipeBotoes = document.querySelectorAll('.naipe-botao');
+
+// Adicione essa função em algum lugar do arquivo
+function selecionarNaipe(naipe) {
+  document.querySelector('.naipe-botao.active').classList.remove('active');
+  document.querySelector(`.naipe-botao[data-naipe="${naipe}"]`).classList.add('active');
+}
+
+// Adicione essa linha no final do bloco de código da função enviarFormulario
+const naipeSelecionado = document.querySelector('.naipe-botao.active').dataset.naipe;
       
       
 function enviarFormulario() {
