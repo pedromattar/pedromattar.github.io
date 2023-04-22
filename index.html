@@ -1,91 +1,134 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Minha Página Web</title>
     <meta charset="UTF-8">
-    <title>Seleção de Naipe</title>
     <style>
       body {
-        background: linear-gradient(to bottom, #00ffff 0%, #ff00ff 100%);
+        background-color: #a1c4fd;
+        background-image: linear-gradient(90deg, #a1c4fd 0%, #c2e9fb 100%);
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         height: 100vh;
-        margin: 0;
       }
-      form {
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
+
+      label {
+        font-size: 20px;
+        margin-bottom: 10px;
       }
+
+      input[type=text] {
+        padding: 10px;
+        font-size: 16px;
+        border-radius: 5px;
+        border: none;
+        margin-bottom: 10px;
+      }
+
+      button {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
       .contador {
         display: flex;
+        flex-direction: row;
         align-items: center;
+        justify-content: center;
         margin-top: 20px;
       }
+
       .contador label {
-        font-size: 20px;
-        margin-right: 10px;
+        font-size: 24px;
+        margin: 0 10px;
       }
-      .contador input[type="number"] {
-        font-size: 20px;
-        width: 60px;
+
+      .contador input[type=text] {
+        padding: 10px;
+        font-size: 24px;
+        border-radius: 5px;
+        border: none;
+        margin: 0 10px;
+        width: 50px;
         text-align: center;
+      }
+
+      .contador button {
+        font-size: 24px;
+        padding: 10px;
       }
     </style>
   </head>
+
   <body>
-    <form>
+    <form id="formulario" onsubmit="return false;">
       <label for="nome">Nome:</label>
-      <input type="text" id="nome" name="nome"><br><br>
-      <p>Selecione um naipe:</p>
-      <input type="radio" id="copas" name="naipe" value="copas">
-      <label for="copas">Copas</label><br>
-      <input type="radio" id="espadas" name="naipe" value="espadas">
-      <label for="espadas">Espadas</label><br>
-      <input type="radio" id="ouros" name="naipe" value="ouros">
-      <label for="ouros">Ouros</label><br>
-      <input type="radio" id="paus" name="naipe" value="paus">
-      <label for="paus">Paus</label><br><br>
+      <input type="text" id="nome" required>
+      <br>
+
       <label for="bebida">Bebida:</label>
-      <input type="text" id="bebida" name="bebida"><br><br>
+      <input type="text" id="bebida">
+      <br>
+
+      <label for="naipe">Naipe:</label>
+      <br>
+      <button type="button" onclick="selecionarNaipe('copas')">Copas</button>
+      <button type="button" onclick="selecionarNaipe('espadas')">Espadas</button>
+      <button type="button" onclick="selecionarNaipe('ouros')">Ouros</button>
+      <button type="button" onclick="selecionarNaipe('paus')">Paus</button>
+
       <div class="contador">
         <label for="numero">Número:</label>
-        <input type="number" id="numero" name="numero" value="0" min="0">
-        <button type="button" onclick="aumentarNumero()">▲</button>
-        <button type="button" onclick="diminuirNumero()">▼</button>
+        <button type="button" onclick="aumentarNumero()">↑</button>
+        <input type="text" id="numero" value="0">
+        <button type="button" onclick="diminuirNumero()">↓</button>
       </div>
-      <br>
-      <button type="button" onclick="selecionarNaipe()">OK</button>
-    </form>
-    <script>
-      function selecionarNaipe() {
-        var nome = document.getElementById("nome").value;
-        var naipeSelecionado = document.querySelector('input[name="naipe"]:checked');
-        var bebida = document.getElementById("bebida").value;
-        var numero = document.getElementById("numero").value;
-        if (nome == "") {
-          alert("Por favor, insira o seu nome.");
-        } else if (naipeSelecionado == null) {
-          alert("Por favor, selecione um naipe.");
-        } else {
-          var naipe = naipeSelecionado.value;
-          window.location.href = "selecionado.html?naipe=" + naipe + "&nome=" + nome + "&bebida=" + bebida + "&numero=" + numero;
-        }
-      }
-      
-            function aumentarNumero() {
-        var numero = document.getElementById("numero");
-        numero.value = parseInt(numero.value) + 1;
-      }
 
-      function diminuirNumero() {
-        var numero = document.getElementById("numero");
-        if (numero.value > 0) {
-          numero.value = parseInt(numero.value) - 1;
-        }
-      }
-    </script>
+      <button type="submit" onclick="enviarFormulario()">OK</button>
+    </form>
+
+    <script>
+      var naipeSelecionado = "";
+
+      function selecionarNaipe(naipe) {
+  var naipes = document.getElementsByClassName("naipe");
+  for (var i = 0; i < naipes.length; i++) {
+    naipes[i].classList.remove("selecionado");
+  }
+  naipeSelecionado = naipe;
+  document.getElementById(naipe).classList.add("selecionado");
+}
+
+function enviarFormulario() {
+console.log("Nome: " + document.getElementById("nome").value);
+console.log("Bebida: " + document.getElementById("bebida").value);
+console.log("Naipe selecionado: " + naipeSelecionado);
+console.log("Número selecionado: " + document.getElementById("numero").value);
+}
+
+  function aumentarNumero() {
+    var inputNumero = document.getElementById("numero");
+    var numeroAtual = parseInt(inputNumero.value);
+    inputNumero.value = numeroAtual + 1;
+  }
+
+  function diminuirNumero() {
+    var inputNumero = document.getElementById("numero");
+    var numeroAtual = parseInt(inputNumero.value);
+    if (numeroAtual > 0) {
+      inputNumero.value = numeroAtual - 1;
+    }
+  }
+</script>
   </body>
 </html>
-
