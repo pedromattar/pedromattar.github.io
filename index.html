@@ -97,20 +97,24 @@
       <button type="submit" onclick="enviarFormulario()">OK</button>
     </form>
 
-    <table id="resultados">
-  <tr>
-    <th>Nome</th>
-    <th>Bebida</th>
-    <th>Naipe</th>
-    <th>Número</th>
-  </tr>
+    <table id="tabela-resultados">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Bebida</th>
+      <th>Naipe</th>
+      <th>Número</th>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
 </table>
 
     
     <script>
       var naipeSelecionado = "";
 
-      function selecionarNaipe(naipe) {
+function selecionarNaipe(naipe) {
   var naipes = document.getElementsByClassName("naipe");
   for (var i = 0; i < naipes.length; i++) {
     naipes[i].classList.remove("selecionado");
@@ -118,25 +122,37 @@
   naipeSelecionado = naipe;
   document.getElementById(naipe).classList.add("selecionado");
 }
+
       
       
 function enviarFormulario() {
+  // Obtenha as informações do formulário
   var nome = document.getElementById("nome").value;
   var bebida = document.getElementById("bebida").value;
-  var naipeSelecionado = document.querySelector(".naipe.selecionado").id;
+  var naipe = naipeSelecionado;
   var numero = document.getElementById("numero").value;
 
-  var tabela = document.getElementById("resultados");
-  var novaLinha = tabela.insertRow(-1);
+  // Crie uma nova linha na tabela com as informações do formulário
+  var tabela = document.getElementById("tabela-resultados").getElementsByTagName("tbody")[0];
+  var novaLinha = tabela.insertRow(tabela.rows.length);
   var celulaNome = novaLinha.insertCell(0);
   var celulaBebida = novaLinha.insertCell(1);
   var celulaNaipe = novaLinha.insertCell(2);
   var celulaNumero = novaLinha.insertCell(3);
-
   celulaNome.innerHTML = nome;
   celulaBebida.innerHTML = bebida;
-  celulaNaipe.innerHTML = naipeSelecionado;
+  celulaNaipe.innerHTML = naipe;
   celulaNumero.innerHTML = numero;
+
+  // Limpe os campos do formulário
+  document.getElementById("nome").value = "";
+  document.getElementById("bebida").value = "";
+  naipeSelecionado = "";
+  var naipes = document.getElementsByClassName("naipe");
+  for (var i = 0; i < naipes.length; i++) {
+    naipes[i].classList.remove("selecionado");
+  }
+  document.getElementById("numero").value = 0;
 }
 
 
