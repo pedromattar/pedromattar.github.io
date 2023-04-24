@@ -1,26 +1,47 @@
 
-  // função que envia o formulário
-  function enviarFormulario() {
-    // obtém o nome digitado pelo usuário
-    var nome = document.getElementById("nome").value;
+// função que envia o formulário
+function enviarFormulario() {
+  // obtém o nome digitado pelo usuário
+  var nome = document.getElementById("nome").value;
 
-    // obtém o naipe selecionado pelo usuário
-    var naipe = document.querySelector(".naipe-botao.active").dataset.naipe;
+  // obtém o naipe selecionado pelo usuário
+  var naipe = document.querySelector(".naipe-botao.active").dataset.naipe;
 
-    // obtém o número digitado pelo usuário
-    var numero = document.getElementById("numero").value;
+  // obtém o número digitado pelo usuário
+  var numero = document.getElementById("numero").value;
 
-    // obtém a bebida digitada pelo usuário
-    var bebida = document.getElementById("bebida").value;
+  // obtém a bebida digitada pelo usuário
+  var bebida = document.getElementById("bebida").value;
 
-    // cria um objeto com os dados do formulário
-    var formulario = {
-      nome: nome,
-      naipe: naipe,
-      numero: numero,
-      bebida: bebida
-    };
+  // cria um objeto com os dados do formulário
+  var formulario = {
+    nome: nome,
+    naipe: naipe,
+    numero: numero,
+    bebida: bebida
+  };
+
+  // verifica se o naipe é "copas"
+  if (naipe === "copas") {
+    // obtém a tabela do naipe "copas"
+    var tabela = document.getElementById("tabela-copas");
+
+    // obtém a referência ao corpo da tabela
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+
+    // cria uma nova linha para a tabela
+    var novaLinha = tbody.insertRow();
+
+    // adiciona as células da nova linha
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
   }
+}
+
 
 
   // função que aumenta o número
