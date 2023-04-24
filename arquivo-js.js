@@ -49,11 +49,6 @@
       this.classList.add("active");
     });
   }
-
-    
-    
-    
-    
     
     
     // função para extrair os dados do formulário e adicioná-los à tabela correspondente
