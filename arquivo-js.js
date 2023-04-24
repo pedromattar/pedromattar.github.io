@@ -1,5 +1,3 @@
-
-// função que envia o formulário
 function enviarFormulario() {
   // obtém o nome digitado pelo usuário
   var nome = document.getElementById("nome").value;
@@ -13,6 +11,12 @@ function enviarFormulario() {
   // obtém a bebida digitada pelo usuário
   var bebida = document.getElementById("bebida").value;
 
+  // verifica se o nome, número ou bebida estão vazios
+  if (nome === "" || numero === "" || bebida === "") {
+    alert("Por favor, preencha todos os campos.");
+    return;
+  }
+
   // cria um objeto com os dados do formulário
   var formulario = {
     nome: nome,
@@ -21,86 +25,26 @@ function enviarFormulario() {
     bebida: bebida
   };
 
-  // verifica se o naipe é "copas"
-  if (naipe === "copas") {
-    // obtém a tabela do naipe "copas"
-    var tabela = document.getElementById("tabela-copas");
+  // obtém a tabela correspondente ao naipe selecionado
+  var tabela = document.getElementById("tabela-" + naipe);
 
-    // obtém a referência ao corpo da tabela
-    var tbody = tabela.getElementsByTagName("tbody")[0];
+  // obtém a referência ao corpo da tabela
+  var tbody = tabela.getElementsByTagName("tbody")[0];
 
-    // cria uma nova linha para a tabela
-    var novaLinha = tbody.insertRow();
+  // cria uma nova linha para a tabela
+  var novaLinha = tbody.insertRow();
 
-    // adiciona as células da nova linha
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  }
-    if (naipe === "espadas") {
-    
-    var tabela = document.getElementById("tabela-espadas");
+  // adiciona as células da nova linha
+  var nomeCelula = novaLinha.insertCell();
+  nomeCelula.innerHTML = nome;
+  var bebidaCelula = novaLinha.insertCell();
+  bebidaCelula.innerHTML = bebida;
+  var quantidadeCelula = novaLinha.insertCell();
+  quantidadeCelula.innerHTML = numero;
 
-    // obtém a referência ao corpo da tabela
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-
-    // cria uma nova linha para a tabela
-    var novaLinha = tbody.insertRow();
-
-    // adiciona as células da nova linha
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  }
-    if (naipe === "paus") {
-    // obtém a tabela do naipe "copas"
-    var tabela = document.getElementById("tabela-paus");
-
-    // obtém a referência ao corpo da tabela
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-
-    // cria uma nova linha para a tabela
-    var novaLinha = tbody.insertRow();
-
-    // adiciona as células da nova linha
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  }
-    if (naipe === "ouros") {
-    
-    var tabela = document.getElementById("tabela-ouros");
-
-    // obtém a referência ao corpo da tabela
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-
-    // cria uma nova linha para a tabela
-    var novaLinha = tbody.insertRow();
-
-    // adiciona as células da nova linha
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  }
-  
-  
-  
-  
-  
+  // reseta o formulário
+  document.getElementById("formulario").reset();
 }
-
 
 
   // função que aumenta o número
