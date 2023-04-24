@@ -1,58 +1,39 @@
 function enviarFormulario() {
-  var nome = document.getElementById("nome").value;
-  var naipe = document.querySelector(".naipe-botao.active input").value;
-  var numero = document.getElementById("numero").value;
-  var bebida = document.getElementById("bebida").value;
+  // Obtenha os dados do formulário
+  const nome = document.getElementById("nome").value;
+  const naipe = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
+  const numero = document.getElementById("numero").value;
+  const bebida = document.getElementById("bebida").value;
 
-  var formulario = {
-    nome: nome,
-    naipe: naipe,
-    numero: numero,
-    bebida: bebida
+  // Crie um objeto XMLHttpRequest
+  const xhr = new XMLHttpRequest();
+
+  // Configure a solicitação da API
+  xhr.open("POST", "https://api.openai.com/v1/completions");
+  xhr.setRequestHeader("Content-Type", "application/json");
+  xhr.setRequestHeader("Authorization", "Bearer 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");
+
+  // Crie o corpo da solicitação com os dados do formulário
+  const requestBody = {
+    prompt: `${nome} pediu uma carta de ${numero} de ${naipe} e uma ${bebida}.`,
+    max_tokens: 5
   };
 
-  if (naipe === "copas") {
-    var tabela = document.getElementById("tabela-copas");
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-    var novaLinha = tbody.insertRow();
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  } else if (naipe === "espadas") {
-    var tabela = document.getElementById("tabela-espadas");
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-    var novaLinha = tbody.insertRow();
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  } else if (naipe === "paus") {
-    var tabela = document.getElementById("tabela-paus");
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-    var novaLinha = tbody.insertRow();
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  } else if (naipe === "ouros") {
-    var tabela = document.getElementById("tabela-ouros");
-    var tbody = tabela.getElementsByTagName("tbody")[0];
-    var novaLinha = tbody.insertRow();
-    var nomeCelula = novaLinha.insertCell();
-    nomeCelula.innerHTML = nome;
-    var bebidaCelula = novaLinha.insertCell();
-    bebidaCelula.innerHTML = bebida;
-    var quantidadeCelula = novaLinha.insertCell();
-    quantidadeCelula.innerHTML = numero;
-  }
+  // Envie a solicitação da API
+  xhr.send(JSON.stringify(requestBody));
 }
+xhr.onload = function() {
+  // Manipule a resposta da API
+  const response = JSON.parse(xhr.responseText);
+  const texto = response.choices[0].text;
+
+  // Exiba o texto no site
+  const resultado = document.createElement("p");
+  resultado.textContent = texto;
+  document.body.appendChild(resultado);
+};
+
+
 
 
   // função que aumenta o número
