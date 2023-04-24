@@ -21,9 +21,6 @@
       bebida: bebida
     };
 
-    // exibe um alerta com os dados do formulário
-    alert("Dados do formulário:\n" + JSON.stringify(formulario));
-  }
 
   // função que aumenta o número
   function aumentarNumero() {
