@@ -20,6 +20,7 @@
       numero: numero,
       bebida: bebida
     };
+  }
 
 
   // função que aumenta o número
