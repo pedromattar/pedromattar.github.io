@@ -71,11 +71,60 @@
 
 
 		</div>
-		<div class="aba2">
-			<!-- Conteúdo da segunda aba -->
-		</div>
-		<div class="aba3">
-			<!-- Conteúdo da terceira aba -->
+		<div class="aba2">  <!--      -----------*****    Conteúdo da SEGUNDA aba  *****-----------           -->
+			
+
+   <table class="tabela-naipe" data-naipe="copas">
+      <thead>
+         <tr>
+            <th>Nome</th>
+            <th>Bebida</th>
+            <th>Quantidade</th>
+         </tr>
+      </thead>
+      <tbody></tbody>
+   </table>
+   <table class="tabela-naipe" data-naipe="espadas">
+      <thead>
+         <tr>
+            <th>Nome</th>
+            <th>Bebida</th>
+            <th>Quantidade</th>
+         </tr>
+      </thead>
+      <tbody></tbody>
+   </table>
+   <table class="tabela-naipe" data-naipe="ouros">
+      <thead>
+         <tr>
+            <th>Nome</th>
+            <th>Bebida</th>
+            <th>Quantidade</th>
+         </tr>
+      </thead>
+      <tbody></tbody>
+   </table>
+   <table class="tabela-naipe" data-naipe="paus">
+      <thead>
+         <tr>
+            <th>Nome</th>
+            <th>Bebida</th>
+            <th>Quantidade</th>
+         </tr>
+      </thead>
+      <tbody></tbody>
+   </table>
+</div>
+
+
+	
+	
+	
+	
+	
+	
+		<div class="aba3">            <!--      -----------*****    Conteúdo da TERCEIRA aba  *****-----------           -->
+			
 		</div>
 	
 		<script>
@@ -88,20 +137,20 @@
 			}
 
 		  function enviarFormulario() {
-		    const nome = document.getElementById("nome").value;
-		    const bebida = document.getElementById("bebida").value;
-		    const naipe = naipeSelecionado;
-		    const numero = document.getElementById("numero").value;
+   const nome = document.getElementById("nome").value;
+   const bebida = document.getElementById("bebida").value;
+   const naipe = naipeSelecionado;
+   const numero = document.getElementById("numero").value;
 
-		    const tabela = document.getElementById("tabela-resultados").getElementsByTagName("tbody")[0];
-		    const novaLinha = tabela.insertRow(tabela.rows.length);
-		    novaLinha.insertCell(0).innerHTML = nome;
-		    novaLinha.insertCell(1).innerHTML = naipe;
-		    novaLinha.insertCell(2).innerHTML = numero;
-		    novaLinha.insertCell(3).innerHTML = bebida;
+   const tabela = document.querySelector(`.tabela-naipe[data-naipe="${naipe}"]`).getElementsByTagName("tbody")[0];
+   const novaLinha = tabela.insertRow(tabela.rows.length);
+   novaLinha.insertCell(0).innerHTML = nome;
+   novaLinha.insertCell(1).innerHTML = bebida;
+   novaLinha.insertCell(2).innerHTML = numero;
 
-		    document.getElementById("nome").value = "";
-		  }
+   document.getElementById("nome").value = "";
+}
+
 		</script>
 </body>
 </html>
