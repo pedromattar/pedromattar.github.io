@@ -41,7 +41,7 @@ function enviarFormulario() {
     quantidadeCelula.innerHTML = numero;
   }
     if (naipe === "espadas") {
-    // obtém a tabela do naipe "copas"
+    
     var tabela = document.getElementById("tabela-espadas");
 
     // obtém a referência ao corpo da tabela
@@ -77,7 +77,7 @@ function enviarFormulario() {
     quantidadeCelula.innerHTML = numero;
   }
     if (naipe === "ouros") {
-    // obtém a tabela do naipe "copas"
+    
     var tabela = document.getElementById("tabela-ouros");
 
     // obtém a referência ao corpo da tabela
