@@ -1,23 +1,9 @@
 function enviarFormulario() {
-  // obtém o nome digitado pelo usuário
   var nome = document.getElementById("nome").value;
-
-  // obtém o naipe selecionado pelo usuário
-  var naipe = document.querySelector(".naipe-botao.active").dataset.naipe;
-
-  // obtém o número digitado pelo usuário
+  var naipe = document.querySelector(".naipe-botao.active input").value;
   var numero = document.getElementById("numero").value;
-
-  // obtém a bebida digitada pelo usuário
   var bebida = document.getElementById("bebida").value;
 
-  // verifica se o nome, número ou bebida estão vazios
-  if (nome === "" || numero === "" || bebida === "") {
-    alert("Por favor, preencha todos os campos.");
-    return;
-  }
-
-  // cria um objeto com os dados do formulário
   var formulario = {
     nome: nome,
     naipe: naipe,
@@ -25,25 +11,47 @@ function enviarFormulario() {
     bebida: bebida
   };
 
-  // obtém a tabela correspondente ao naipe selecionado
-  var tabela = document.getElementById("tabela-" + naipe);
-
-  // obtém a referência ao corpo da tabela
-  var tbody = tabela.getElementsByTagName("tbody")[0];
-
-  // cria uma nova linha para a tabela
-  var novaLinha = tbody.insertRow();
-
-  // adiciona as células da nova linha
-  var nomeCelula = novaLinha.insertCell();
-  nomeCelula.innerHTML = nome;
-  var bebidaCelula = novaLinha.insertCell();
-  bebidaCelula.innerHTML = bebida;
-  var quantidadeCelula = novaLinha.insertCell();
-  quantidadeCelula.innerHTML = numero;
-
-  // reseta o formulário
-  document.getElementById("formulario").reset();
+  if (naipe === "copas") {
+    var tabela = document.getElementById("tabela-copas");
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+    var novaLinha = tbody.insertRow();
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  } else if (naipe === "espadas") {
+    var tabela = document.getElementById("tabela-espadas");
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+    var novaLinha = tbody.insertRow();
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  } else if (naipe === "paus") {
+    var tabela = document.getElementById("tabela-paus");
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+    var novaLinha = tbody.insertRow();
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  } else if (naipe === "ouros") {
+    var tabela = document.getElementById("tabela-ouros");
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+    var novaLinha = tbody.insertRow();
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  }
 }
 
 
