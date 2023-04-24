@@ -169,7 +169,21 @@
 	
 		<script>
 			
-		      const naipeBotoes = document.querySelectorAll('.naipe-botao');
+		      
+			
+		function aumentarNumero() {
+		  var numeroInput = document.getElementById('numero');
+		  var numeroAtual = parseInt(numeroInput.value);
+		  numeroInput.value = numeroAtual + 1;
+		}
+
+		function diminuirNumero() {
+		  var numeroInput = document.getElementById('numero');
+		  var numeroAtual = parseInt(numeroInput.value);
+		  numeroInput.value = numeroAtual - 1;
+		}
+
+			const naipeBotoes = document.querySelectorAll('.naipe-botao');
 		      let naipeSelecionado = naipeBotoes[0].dataset.naipe;
 			function selecionarNaipe(naipe) {
 		    document.querySelector('.naipe-botao.active').classList.remove('active');
