@@ -36,9 +36,8 @@
 		   text-align: left;
 		}
 
-		.tabela-naipe td {
-		   padding: 5px;
-		   border-bottom: 1px solid #ccc;
+		.tabela-naipe {
+		  margin-bottom: 20px;
 		}
 
 		
@@ -93,50 +92,59 @@
 
 		</div>
 		<div class="aba2">  <!--      -----------*****    Conteúdo da SEGUNDA aba  *****-----------           -->
-			
 
-   <table class="tabela-naipe" data-naipe="copas">
-      <thead>
-         <tr>
-            <th>Nome</th>
-            <th>Bebida</th>
-            <th>Quantidade</th>
-         </tr>
-      </thead>
-      <tbody></tbody>
-   </table>
-   <table class="tabela-naipe" data-naipe="espadas">
-      <thead>
-         <tr>
-            <th>Nome</th>
-            <th>Bebida</th>
-            <th>Quantidade</th>
-         </tr>
-      </thead>
-      <tbody></tbody>
-   </table>
-   <table class="tabela-naipe" data-naipe="ouros">
-      <thead>
-         <tr>
-            <th>Nome</th>
-            <th>Bebida</th>
-            <th>Quantidade</th>
-         </tr>
-      </thead>
-      <tbody></tbody>
-   </table>
-   <table class="tabela-naipe" data-naipe="paus">
-      <thead>
-         <tr>
-            <th>Nome</th>
-            <th>Bebida</th>
-            <th>Quantidade</th>
-         </tr>
-      </thead>
-      <tbody></tbody>
-   </table>
-</div>
+		  <table id="tabela-copas" class="tabela-naipe">
+		    <!-- Cabeçalho da tabela -->
+		    <thead>
+		      <tr>
+			<th>Nome</th>
+			<th>Bebida</th>
+			<th>Quantidade</th>
+		      </tr>
+		    </thead>
+		    <!-- Corpo da tabela -->
+		    <tbody></tbody>
+		  </table>
 
+		  <table id="tabela-espadas" class="tabela-naipe">
+		    <!-- Cabeçalho da tabela -->
+		    <thead>
+		      <tr>
+			<th>Nome</th>
+			<th>Bebida</th>
+			<th>Quantidade</th>
+		      </tr>
+		    </thead>
+		    <!-- Corpo da tabela -->
+		    <tbody></tbody>
+		  </table>
+
+		  <table id="tabela-ouros" class="tabela-naipe">
+		    <!-- Cabeçalho da tabela -->
+		    <thead>
+		      <tr>
+			<th>Nome</th>
+			<th>Bebida</th>
+			<th>Quantidade</th>
+		      </tr>
+		    </thead>
+		    <!-- Corpo da tabela -->
+		    <tbody></tbody>
+		  </table>
+
+		  <table id="tabela-paus" class="tabela-naipe">
+		    <!-- Cabeçalho da tabela -->
+		    <thead>
+		      <tr>
+			<th>Nome</th>
+			<th>Bebida</th>
+			<th>Quantidade</th>
+		      </tr>
+		    </thead>
+		    <!-- Corpo da tabela -->
+		    <tbody></tbody>
+		  </table>
+		</div>
 
 	
 	
@@ -157,20 +165,21 @@
 		    naipeSelecionado = naipe;
 			}
 
-		  function enviarFormulario() {
-   const nome = document.getElementById("nome").value;
-   const bebida = document.getElementById("bebida").value;
-   const naipe = naipeSelecionado;
-   const numero = document.getElementById("numero").value;
+		function enviarFormulario() {
+		  const nome = document.getElementById("nome").value;
+		  const bebida = document.getElementById("bebida").value;
+		  const naipe = naipeSelecionado;
+		  const numero = document.getElementById("numero").value;
 
-   const tabela = document.querySelector(`.tabela-naipe[data-naipe="${naipe}"]`).getElementsByTagName("tbody")[0];
-   const novaLinha = tabela.insertRow(tabela.rows.length);
-   novaLinha.insertCell(0).innerHTML = nome;
-   novaLinha.insertCell(1).innerHTML = bebida;
-   novaLinha.insertCell(2).innerHTML = numero;
+		  const tabelaNaipe = document.getElementById(`tabela-${naipe}`).getElementsByTagName("tbody")[0];
+		  const novaLinha = tabelaNaipe.insertRow(tabelaNaipe.rows.length);
+		  novaLinha.insertCell(0).innerHTML = nome;
+		  novaLinha.insertCell(1).innerHTML = bebida;
+		  novaLinha.insertCell(2).innerHTML = numero;
 
-   document.getElementById("nome").value = "";
-}
+		  document.getElementById("nome").value = "";
+		}
+
 
 		</script>
 </body>
