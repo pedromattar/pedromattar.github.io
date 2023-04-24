@@ -19,7 +19,6 @@
       naipe: naipe,
       numero: numero,
       bebida: bebida
-    adicionarDados()
     };
 
 
