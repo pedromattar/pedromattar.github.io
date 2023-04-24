@@ -172,8 +172,22 @@
 		function enviarFormulario() {
 		  const nome = document.getElementById("nome").value;
 		  const bebida = document.getElementById("bebida").value;
-		  const naipe = naipeSelecionado;
-		  const numero = document.getElementById("numero").value;
+		  const quantidade = parseInt(document.getElementById("numero").value);
+		  const naipeAtivo = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
+
+		  const tabela = document.getElementById("tabela-" + naipeAtivo);
+		  const tbody = tabela.querySelector("tbody");
+
+		  // Adiciona uma nova linha na tabela com as informações preenchidas no formulário
+		  const tr = document.createElement("tr");
+		  tr.innerHTML = "<td>" + nome + "</td><td>" + bebida + "</td><td>" + quantidade + "</td>";
+		  tbody.appendChild(tr);
+		}
+		
+		const botaoOk = document.querySelector("#formulario button[type='submit']");
+		botaoOk.addEventListener("click", enviarFormulario);
+
+
 
 		  const tabelaNaipe = document.getElementById(`tabela-${naipe}`).getElementsByTagName("tbody")[0];
 		  const novaLinha = tabelaNaipe.insertRow(tabelaNaipe.rows.length);
