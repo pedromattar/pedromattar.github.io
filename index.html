@@ -198,6 +198,21 @@
 
 		  document.getElementById("nome").value = "";
 		}
+		
+		const tabelasResultados = {
+		  copas: document.getElementById('tabela-copas'),
+		  espadas: document.getElementById('tabela-espadas'),
+		  ouros: document.getElementById('tabela-ouros'),
+		  paus: document.getElementById('tabela-paus')
+		};
+			
+		const naipeSelecionado = document.querySelector('.naipe-botao.active').dataset.naipe;
+		const tabelaResultados = tabelasResultados[naipeSelecionado];
+		const novaLinha = tabelaResultados.insertRow(-1);
+		novaLinha.innerHTML = `<td>${nome}</td><td>${bebida}</td><td>${numero}</td>`;
+
+
+
 
 
 		</script>
