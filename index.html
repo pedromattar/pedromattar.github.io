@@ -166,77 +166,7 @@
 	
 		<div class="aba3">            <!--      -----------*****    Conteúdo da TERCEIRA aba  *****-----------           -->
 			
-	
-		<script>
-			
-		      
-			
-		function aumentarNumero() {
-		  var numeroInput = document.getElementById('numero');
-		  var numeroAtual = parseInt(numeroInput.value);
-		  numeroInput.value = numeroAtual + 1;
-		}
 
-		function diminuirNumero() {
-		  var numeroInput = document.getElementById('numero');
-		  var numeroAtual = parseInt(numeroInput.value);
-		  numeroInput.value = numeroAtual - 1;
-		}
-
-			const naipeBotoes = document.querySelectorAll('.naipe-botao');
-		      let naipeSelecionado = naipeBotoes[0].dataset.naipe;
-			function selecionarNaipe(naipe) {
-		    document.querySelector('.naipe-botao.active').classList.remove('active');
-		    document.querySelector(`.naipe-botao[data-naipe="${naipe}"]`).classList.add('active');
-		    naipeSelecionado = naipe;
-			}
-
-		function enviarFormulario() {
-		  const nome = document.getElementById("nome").value;
-		  const bebida = document.getElementById("bebida").value;
-		  const quantidade = parseInt(document.getElementById("numero").value);
-		  const naipeAtivo = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
-
-		  const tabela = document.getElementById("tabela-" + naipeAtivo);
-		  const tbody = tabela.querySelector("tbody");
-
-		  // Adiciona uma nova linha na tabela com as informações preenchidas no formulário
-		  const tr = document.createElement("tr");
-		  tr.innerHTML = "<td>" + nome + "</td><td>" + bebida + "</td><td>" + quantidade + "</td>";
-		  tbody.appendChild(tr);
-		}
-		
-		const botaoOk = document.querySelector("#formulario button[type='submit']");
-		botaoOk.addEventListener("click", enviarFormulario);
-
-
-
-		  const tabelaNaipe = document.getElementById(`tabela-${naipe}`).getElementsByTagName("tbody")[0];
-		  const novaLinha = tabelaNaipe.insertRow(tabelaNaipe.rows.length);
-		  novaLinha.insertCell(0).innerHTML = nome;
-		  novaLinha.insertCell(1).innerHTML = bebida;
-		  novaLinha.insertCell(2).innerHTML = numero;
-
-		  document.getElementById("nome").value = "";
-		}
-		
-		const tabelasResultados = {
-		  copas: document.getElementById('tabela-copas'),
-		  espadas: document.getElementById('tabela-espadas'),
-		  ouros: document.getElementById('tabela-ouros'),
-		  paus: document.getElementById('tabela-paus')
-		};
-			
-		const naipeSelecionado = document.querySelector('.naipe-botao.active').dataset.naipe;
-		const tabelaResultados = tabelasResultados[naipeSelecionado];
-		const novaLinha = tabelaResultados.insertRow(-1);
-		novaLinha.innerHTML = `<td>${nome}</td><td>${bebida}</td><td>${numero}</td>`;
-
-
-
-
-
-		</script>
 </body>
 </html>
 
