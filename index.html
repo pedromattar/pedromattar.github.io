@@ -29,14 +29,80 @@
 </head>
 <body>
 	<div class="aba1">
-		<!-- Conteúdo da primeira aba -->
-	</div>
-	<div class="aba2">
-		<!-- Conteúdo da segunda aba -->
-	</div>
-	<div class="aba3">
-		<!-- Conteúdo da terceira aba -->
-	</div>
+
+	    <div class="container">
+	      <form id="formulario" onsubmit="return false;">
+		<label for="nome">Nome:</label>
+		<input type="text" id="nome" required><br>
+		      
+		<label>Naipe:</label><br>
+		      
+		<button type="button" class="naipe-botao active" data-naipe="copas">Copas</button>
+		<button type="button" class="naipe-botao" data-naipe="espadas">Espadas</button>
+		<button type="button" class="naipe-botao" data-naipe="ouros">Ouros</button>
+		<button type="button" class="naipe-botao" data-naipe="paus">Paus</button>
+		      
+		<div class="contador">
+		  <label for="numero">Número:</label>
+		  <button type="button" onclick="aumentarNumero()">↑</button>
+		  <input type="text" id="numero" value="0">
+		  <button type="button" onclick="diminuirNumero()">↓</button>
+		</div>
+		      
+		<label for="bebida">Bebida:</label>
+		<input type="text" id="bebida"><br>
+		<button type="submit" onclick="enviarFormulario()">OK</button>
+	      </form>
+		    
+	      <table id="tabela-resultados">
+		<thead>
+		  <tr>
+			  
+		    <th>Nome</th>
+		    <th>Naipe</th>
+		    <th>Número</th>
+		    <th>Bebida</th>
+			  
+		  </tr>
+		</thead>
+		<tbody></tbody>
+	      </table>
+	    </div>
+
+
+		</div>
+		<div class="aba2">
+			<!-- Conteúdo da segunda aba -->
+		</div>
+		<div class="aba3">
+			<!-- Conteúdo da terceira aba -->
+		</div>
+	
+		<script>
+		      const naipeBotoes = document.querySelectorAll('.naipe-botao');
+		      let naipeSelecionado = naipeBotoes[0].dataset.naipe;
+			function selecionarNaipe(naipe) {
+		    document.querySelector('.naipe-botao.active').classList.remove('active');
+		    document.querySelector(`.naipe-botao[data-naipe="${naipe}"]`).classList.add('active');
+		    naipeSelecionado = naipe;
+			}
+
+		  function enviarFormulario() {
+		    const nome = document.getElementById("nome").value;
+		    const bebida = document.getElementById("bebida").value;
+		    const naipe = naipeSelecionado;
+		    const numero = document.getElementById("numero").value;
+
+		    const tabela = document.getElementById("tabela-resultados").getElementsByTagName("tbody")[0];
+		    const novaLinha = tabela.insertRow(tabela.rows.length);
+		    novaLinha.insertCell(0).innerHTML = nome;
+		    novaLinha.insertCell(1).innerHTML = naipe;
+		    novaLinha.insertCell(2).innerHTML = numero;
+		    novaLinha.insertCell(3).innerHTML = bebida;
+
+		    document.getElementById("nome").value = "";
+		  }
+		</script>
 </body>
 </html>
 
