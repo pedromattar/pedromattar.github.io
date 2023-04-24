@@ -50,3 +50,36 @@
     });
   }
 
+    
+    
+    
+    
+    
+    
+    // função para extrair os dados do formulário e adicioná-los à tabela correspondente
+function adicionarDados() {
+  // obter os valores dos campos de entrada
+  var nome = document.getElementById("nome").value;
+  var bebida = document.getElementById("bebida").value;
+  var numero = document.getElementById("numero").value;
+
+  // criar uma nova linha da tabela
+  var novaLinha = document.createElement("tr");
+  novaLinha.innerHTML = "<td>" + nome + "</td><td>" + bebida + "</td><td>" + numero + "</td>";
+
+  // adicionar a nova linha à tabela correspondente
+  var tabelaCopas = document.getElementById("tabela-copas");
+  tabelaCopas.getElementsByTagName("tbody")[0].appendChild(novaLinha);
+}
+
+// adicionar ouvinte de evento ao botão "OK"
+  var botaoOK = document.querySelector("#formulario button[type='submit']");
+  botaoOK.addEventListener("click", function() {
+    // verificar se o naipe selecionado é copas
+    var naipeSelecionado = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
+    if (naipeSelecionado === "copas") {
+      // adicionar os dados à tabela de copas
+      adicionarDados();
+    }
+  });
+
