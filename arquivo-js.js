@@ -40,6 +40,65 @@ function enviarFormulario() {
     var quantidadeCelula = novaLinha.insertCell();
     quantidadeCelula.innerHTML = numero;
   }
+    if (naipe === "espadas") {
+    // obtém a tabela do naipe "copas"
+    var tabela = document.getElementById("tabela-espadas");
+
+    // obtém a referência ao corpo da tabela
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+
+    // cria uma nova linha para a tabela
+    var novaLinha = tbody.insertRow();
+
+    // adiciona as células da nova linha
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  }
+    if (naipe === "paus") {
+    // obtém a tabela do naipe "copas"
+    var tabela = document.getElementById("tabela-paus");
+
+    // obtém a referência ao corpo da tabela
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+
+    // cria uma nova linha para a tabela
+    var novaLinha = tbody.insertRow();
+
+    // adiciona as células da nova linha
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  }
+    if (naipe === "ouros") {
+    // obtém a tabela do naipe "copas"
+    var tabela = document.getElementById("tabela-ouros");
+
+    // obtém a referência ao corpo da tabela
+    var tbody = tabela.getElementsByTagName("tbody")[0];
+
+    // cria uma nova linha para a tabela
+    var novaLinha = tbody.insertRow();
+
+    // adiciona as células da nova linha
+    var nomeCelula = novaLinha.insertCell();
+    nomeCelula.innerHTML = nome;
+    var bebidaCelula = novaLinha.insertCell();
+    bebidaCelula.innerHTML = bebida;
+    var quantidadeCelula = novaLinha.insertCell();
+    quantidadeCelula.innerHTML = numero;
+  }
+  
+  
+  
+  
+  
 }
 
 
