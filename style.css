@@ -74,3 +74,135 @@
   font-family: Arial, sans-serif;
 }
 
+
+:root {
+--cor-de-fundo: #f5f5f5;
+--cor-primaria: #0099ff;
+--cor-secundaria: #003399;
+}
+
+/* Estilo básico para o body */
+body {
+background-color: var(--cor-de-fundo);
+font-family: Arial, sans-serif;
+}
+
+/* Estilo para os títulos das abas */
+.abas {
+display: flex;
+justify-content: space-between;
+background-color: var(--cor-primaria);
+color: white;
+padding: 10px;
+}
+
+/* Estilo para as abas ativas */
+.abas .ativa {
+background-color: var(--cor-secundaria);
+}
+
+/* Estilo básico para os botões */
+button {
+background-color: var(--cor-primaria);
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+/* Estilo para os botões do naipe */
+.naipe-botao {
+background-color: white;
+color: var(--cor-primaria);
+border: 2px solid var(--cor-primaria);
+}
+
+/* Estilo para os botões do naipe quando estão selecionados */
+.naipe-botao.selecionado {
+background-color: var(--cor-primaria);
+color: white;
+}
+
+/* Estilo básico para as tabelas */
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+/* Estilo para os cabeçalhos das tabelas */
+table thead th {
+background-color: var(--cor-primaria);
+color: white;
+padding: 10px;
+text-align: left;
+}
+
+/* Estilo para as células das tabelas */
+table td {
+border: 1px solid var(--cor-primaria);
+padding: 10px;
+}
+
+/* Estilo para as células de número das tabelas */
+table td.numero {
+text-align: center;
+}
+
+/* Estilo para o botão de incremento */
+.contador button:first-of-type {
+margin-right: 5px;
+}
+
+/* Estilo para o botão de decremento */
+.contador button:last-of-type {
+margin-left: 5px;
+}
+
+/* Estilo para o input de número */
+.contador input {
+width: 40px;
+text-align: center;
+}
+
+/* Estilo para as abas */
+.aba {
+display: none;
+}
+
+/* Estilo para a aba ativa */
+.aba.ativa {
+display: block;
+}
+
+/* Estilo para o formulário */
+#formulario {
+margin-top: 20px;
+padding: 20px;
+background-color: white;
+border-radius: 5px;
+}
+
+/* Estilo para as labels do formulário */
+label {
+display: block;
+margin-bottom: 10px;
+}
+
+/* Estilo para os inputs do formulário */
+input[type="text"] {
+width: 100%;
+padding: 5px;
+border: 1px solid #ccc;
+border-radius: 5px;
+}
+
+/* Estilo para o botão do formulário */
+button[type="submit"] {
+margin-top: 10px;
+}
+
+/* Estilo para o container */
+.container {
+max-width: 600px;
+margin: 0 auto
