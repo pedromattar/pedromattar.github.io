@@ -18,7 +18,7 @@ function enviarFormulario() {
   novaLinha.appendChild(novaCelulaQuantidade);
   
   // Obter a tabela correta com base no naipe selecionado
-  var tabela = document.getElementById("tabela-" + naipe);
+  var tabela = document.getElementById(naipe);
   var tbody = tabela.querySelector("tbody");
   
   // Adicionar a nova linha à tabela
