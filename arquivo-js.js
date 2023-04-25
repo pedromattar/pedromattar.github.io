@@ -1,35 +1,26 @@
 function enviarFormulario() {
-  // Obter os valores dos campos do formulário
-  var nome = document.getElementById("nome").value;
-  var naipe = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
-  var numero = document.getElementById("numero").value;
-  var bebida = document.getElementById("bebida").value;
-  
-  // Criar uma nova linha para a tabela
-  var novaLinha = document.createElement("tr");
-  var novaCelulaNome = document.createElement("td");
-  var novaCelulaBebida = document.createElement("td");
-  var novaCelulaQuantidade = document.createElement("td");
-  
-  // seleciona a tabela correta com base no naipe selecionado
-  let naipeSelecionado = document.querySelector('.naipe-botao.active').getAttribute('data-naipe');
-  let tabelaSelecionada = document.querySelector(`#tabela-${naipeSelecionado}`);
+  const nome = document.getElementById("nome").value;
+  const naipeAtivo = document.querySelector(".naipe-botao.active");
+  const naipe = naipeAtivo.dataset.naipe;
+  const bebida = document.getElementById("bebida").value;
+  const quantidade = document.getElementById("numero").value;
 
-  
-  novaCelulaNome.innerHTML = nome;
-  novaCelulaBebida.innerHTML = bebida;
-  novaCelulaQuantidade.innerHTML = numero;
-  novaLinha.appendChild(novaCelulaNome);
-  novaLinha.appendChild(novaCelulaBebida);
-  novaLinha.appendChild(novaCelulaQuantidade);
-  
-  // Obter a tabela correta com base no naipe selecionado
-  var tabela = document.getElementById("tabela-" + naipe);
-  var tbody = tabela.querySelector("tbody");
-  
-  // Adicionar a nova linha à tabela
-  tbody.appendChild(novaLinha);
+  const tabela = document.getElementById(`tabela-${naipe}`);
+
+  // cria uma nova linha na tabela
+  const novaLinha = tabela.insertRow();
+
+  // cria as células para a linha criada
+  const celulaNome = novaLinha.insertCell();
+  const celulaBebida = novaLinha.insertCell();
+  const celulaQuantidade = novaLinha.insertCell();
+
+  // define o conteúdo de cada célula
+  celulaNome.innerHTML = nome;
+  celulaBebida.innerHTML = bebida;
+  celulaQuantidade.innerHTML = quantidade;
 }
+
 
 
 // função que aumenta o número
