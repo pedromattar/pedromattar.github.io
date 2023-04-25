@@ -41,6 +41,26 @@
 		  margin-bottom: 20px;
 		}
 
+		.naipe-bota[data-naipe="copa"]::before {
+		  content: "\2665";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-bota[data-naipe="espada"]::before {
+		  content: "\2660";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-bota[data-naipe="ouro"]::before {
+		  content: "\2666";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-bota[data-naipe="pau"]::before {
+		  content: "\2663";
+		  font-family: Arial, sans-serif;
+		}
+		
 		.naipe-botao[data-naipe="copas"]::before {
 		  content: "\2665";
 		  font-family: Arial, sans-serif;
@@ -115,9 +135,9 @@
 		    <!-- Cabeçalho da tabela -->
 		    <thead>
 		      <tr>
-			<th>Nome</th>
-			<th>Bebida</th>
-			<th>Quantidade</th>
+			<th class="naipe-bota" data-naipe="copa"></th>
+			<th></th>
+			<th></th>
 		      </tr>
 		    </thead>
 		    <!-- Corpo da tabela -->
@@ -128,9 +148,9 @@
 		    <!-- Cabeçalho da tabela -->
 		    <thead>
 		      <tr>
-			<th>Nome</th>
-			<th>Bebida</th>
-			<th>Quantidade</th>
+			<th class="naipe-bota" data-naipe="espada"></th>
+			<th></th>
+			<th></th>
 		      </tr>
 		    </thead>
 		    <!-- Corpo da tabela -->
@@ -141,9 +161,9 @@
 		    <!-- Cabeçalho da tabela -->
 		    <thead>
 		      <tr>
-			<th>Nome</th>
-			<th>Bebida</th>
-			<th>Quantidade</th>
+			<th class="naipe-bota" data-naipe="ouro"></th>
+			<th></th>
+			<th></th>
 		      </tr>
 		    </thead>
 		    <!-- Corpo da tabela -->
@@ -154,9 +174,9 @@
 		    <!-- Cabeçalho da tabela -->
 		    <thead>
 		      <tr>
-			<th>Nome</th>
-			<th>Bebida</th>
-			<th>Quantidade</th>
+			<th class="naipe-bota" data-naipe="pau"></th>
+			<th></th>
+			<th></th>
 		      </tr>
 		    </thead>
 		    <!-- Corpo da tabela -->
