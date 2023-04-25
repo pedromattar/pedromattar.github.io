@@ -1,3 +1,28 @@
+// variável global para armazenar o naipe selecionado
+var naipeSelecionado = "copas";
+
+// função para atualizar o naipe selecionado e a classe "active" nos botões
+function selecionarNaipe(naipe) {
+  naipeSelecionado = naipe;
+  var botoesNaipe = document.querySelectorAll(".naipe-botao");
+  botoesNaipe.forEach(function(botao) {
+    if (botao.getAttribute("data-naipe") === naipe) {
+      botao.classList.add("active");
+    } else {
+      botao.classList.remove("active");
+    }
+  });
+}
+
+// adicionar evento de clique para cada botão do naipe
+var botoesNaipe = document.querySelectorAll(".naipe-botao");
+botoesNaipe.forEach(function(botao) {
+  botao.addEventListener("click", function() {
+    selecionarNaipe(botao.getAttribute("data-naipe"));
+  });
+});
+
+
 function enviarFormulario() {
   // Obter os valores dos campos do formulário
   var nome = document.getElementById("nome").value;
