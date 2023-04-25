@@ -1,38 +1,69 @@
-function enviarFormulario() {
-  // Obtenha os dados do formulário
-  const nome = document.getElementById("nome").value;
-  const naipe = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
-  const numero = document.getElementById("numero").value;
-  const bebida = document.getElementById("bebida").value;
+// Capturando o formulário
+const formulario = document.querySelector('#formulario');
 
-  // Crie um objeto XMLHttpRequest
-  const xhr = new XMLHttpRequest();
+// Capturando os campos do formulário
+const nome = formulario.querySelector('#nome');
+const naipe = formulario.querySelector('#naipe');
+const valor = formulario.querySelector('#valor');
 
-  // Configure a solicitação da API
-  xhr.open("POST", "https://api.openai.com/v1/completions");
-  xhr.setRequestHeader("Content-Type", "application/json");
-  xhr.setRequestHeader("Authorization", "Bearer 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");
+// Adicionando o evento de submit ao formulário
+formulario.addEventListener('submit', (event) => {
+  // Prevenindo o comportamento padrão do formulário de ser submetido
+  event.preventDefault();
 
-  // Crie o corpo da solicitação com os dados do formulário
-  const requestBody = {
-    prompt: `${nome} pediu uma carta de ${numero} de ${naipe} e uma ${bebida}.`,
-    max_tokens: 5
-  };
+  // Verificando qual é o naipe selecionado
+  switch (naipe.value) {
+    case 'copas':
+      // Adicionando os dados na tabela de copas
+      const tabelaCopas = document.querySelector('#tabela-copas tbody');
+      tabelaCopas.innerHTML += `
+        <tr>
+          <td>${nome.value}</td>
+          <td>${valor.value}</td>
+        </tr>
+      `;
+      break;
+    case 'espadas':
+      // Adicionando os dados na tabela de espadas
+      const tabelaEspadas = document.querySelector('#tabela-espadas tbody');
+      tabelaEspadas.innerHTML += `
+        <tr>
+          <td>${nome.value}</td>
+          <td>${valor.value}</td>
+        </tr>
+      `;
+      break;
+    case 'ouros':
+      // Adicionando os dados na tabela de ouros
+      const tabelaOuros = document.querySelector('#tabela-ouros tbody');
+      tabelaOuros.innerHTML += `
+        <tr>
+          <td>${nome.value}</td>
+          <td>${valor.value}</td>
+        </tr>
+      `;
+      break;
+    case 'paus':
+      // Adicionando os dados na tabela de paus
+      const tabelaPaus = document.querySelector('#tabela-paus tbody');
+      tabelaPaus.innerHTML += `
+        <tr>
+          <td>${nome.value}</td>
+          <td>${valor.value}</td>
+        </tr>
+      `;
+      break;
+    default:
+      // Caso o naipe selecionado não seja válido, exibe um alerta
+      alert('Naipe inválido!');
+      break;
+  }
 
-  // Envie a solicitação da API
-  xhr.send(JSON.stringify(requestBody));
-}
-xhr.onload = function() {
-  // Manipule a resposta da API
-  const response = JSON.parse(xhr.responseText);
-  const texto = response.choices[0].text;
-
-  // Exiba o texto no site
-  const resultado = document.createElement("p");
-  resultado.textContent = texto;
-  document.body.appendChild(resultado);
-};
-
+  // Limpando os campos do formulário
+  nome.value = '';
+  naipe.value = '';
+  valor.value = '';
+});
 
 
 
