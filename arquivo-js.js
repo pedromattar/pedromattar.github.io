@@ -1,49 +1,30 @@
 
 function selecionaNaipeOuros() {
+  var naipe = "";
   naipe = "ouros";
 }
 
 function selecionaNaipeCopas() {
+  var naipe = "";
   naipe = "copas";
 }
 
 function selecionaNaipePaus() {
+  var naipe = "";
   naipe = "paus";
 }
 
 function selecionaNaipeEspadas() {
+  var naipe = "";
   naipe = "espadas";
 }
 // variável global para armazenar o naipe selecionado
 
 
-// função para atualizar o naipe selecionado e a classe "active" nos botões
-function selecionarNaipe(naipe) {
-  naipeSelecionado = naipe;
-  var botoesNaipe = document.querySelectorAll(".naipe-botao");
-  botoesNaipe.forEach(function(botao) {
-    if (botao.getAttribute("data-naipe") === naipe) {
-      botao.classList.add("active");
-    } else {
-      botao.classList.remove("active");
-    }
-  });
-}
-
-// adicionar evento de clique para cada botão do naipe
-var botoesNaipe = document.querySelectorAll(".naipe-botao");
-botoesNaipe.forEach(function(botao) {
-  botao.addEventListener("click", function() {
-    selecionarNaipe(botao.getAttribute("data-naipe"));
-  });
-});
-
-
 function enviarFormulario() {
   // Obter os valores dos campos do formulário
   var nome = document.getElementById("nome").value;
-  var naipe = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
-alert("O naipe selecionado foi: " + naipe);
+  alert("O naipe selecionado foi: " + naipe);
 
   var numero = document.getElementById("numero").value;
   var bebida = document.getElementById("bebida").value;
