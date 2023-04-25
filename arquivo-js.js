@@ -29,6 +29,8 @@ function enviarFormulario() {
   // Obter os valores dos campos do formulário
   var nome = document.getElementById("nome").value;
   var naipe = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
+alert("O naipe selecionado foi: " + naipe);
+
   var numero = document.getElementById("numero").value;
   var bebida = document.getElementById("bebida").value;
   
@@ -53,7 +55,6 @@ function enviarFormulario() {
 }
 
 
-alert("O naipe selecionado foi: " + naipe);
 
 
 // função que aumenta o número
