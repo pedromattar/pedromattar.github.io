@@ -10,6 +10,12 @@ function enviarFormulario() {
   var novaCelulaNome = document.createElement("td");
   var novaCelulaBebida = document.createElement("td");
   var novaCelulaQuantidade = document.createElement("td");
+  
+  // seleciona a tabela correta com base no naipe selecionado
+  let naipeSelecionado = document.querySelector('.naipe-botao.active').getAttribute('data-naipe');
+  let tabelaSelecionada = document.querySelector(`#tabela-${naipeSelecionado}`);
+
+  
   novaCelulaNome.innerHTML = nome;
   novaCelulaBebida.innerHTML = bebida;
   novaCelulaQuantidade.innerHTML = numero;
