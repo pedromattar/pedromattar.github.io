@@ -1,7 +1,14 @@
 
 
 // variável global para armazenar o naipe selecionado
-var naipeSelecionado = "copas";
+
+
+const botaoOuros = document.querySelector(".naipe-botao[data-naipe='ouros']");
+botaoOuros.addEventListener("click", function() {
+  naipe = "ouros";
+  console.log(`Naipe selecionado: ${naipe}`);
+});
+
 
 // função para atualizar o naipe selecionado e a classe "active" nos botões
 function selecionarNaipe(naipe) {
