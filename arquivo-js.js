@@ -1,32 +1,26 @@
+// variável global para armazenar o naipe selecionado
+var naipe = "";
 
 function selecionaNaipeOuros() {
-  var noipe = "";
-  noipe = "ouros";
+  naipe = "ouros";
 }
 
 function selecionaNaipeCopas() {
-  var noipe = "";
-  noipe = "copas";
+  naipe = "copas";
 }
 
 function selecionaNaipePaus() {
-  var noipe = "";
-  noipe = "paus";
+  naipe = "paus";
 }
 
 function selecionaNaipeEspadas() {
-  var noipe = "";
-  noipe = "espadas";
+  naipe = "espadas";
 }
-// variável global para armazenar o naipe selecionado
-
 
 function enviarFormulario() {
   // Obter os valores dos campos do formulário
   var nome = document.getElementById("nome").value;
-  var naipe = noipe;
   alert("O naipe selecionado foi: " + naipe);
-
   var numero = document.getElementById("numero").value;
   var bebida = document.getElementById("bebida").value;
   
@@ -49,9 +43,6 @@ function enviarFormulario() {
   // Adicionar a nova linha à tabela
   tbody.appendChild(novaLinha);
 }
-
-
-
 
 // função que aumenta o número
 function aumentarNumero() {
