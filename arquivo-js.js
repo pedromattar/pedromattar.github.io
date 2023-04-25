@@ -1,13 +1,13 @@
 // Capturando o formulário
-const formulario = document.querySelector('#formulario');
+const formulario = document.getElementById('formulario');
 
 // Capturando os campos do formulário
-const nome = formulario.querySelector('#nome');
-const naipe = formulario.querySelector('#naipe');
-const valor = formulario.querySelector('#numero');
+const nome = document.getElementById('nome');
+const naipe = document.getElementById('naipe');
+const valor = document.getElementById('numero');
 
 // Adicionando o evento de submit ao formulário
-formulario.addEventListener('submit', (event) => {
+function EnviarFormulario() {
   // Prevenindo o comportamento padrão do formulário de ser submetido
   event.preventDefault();
 
@@ -15,7 +15,7 @@ formulario.addEventListener('submit', (event) => {
   switch (naipe.value) {
     case 'copas':
       // Adicionando os dados na tabela de copas
-      const tabelaCopas = document.querySelector('#tabela-copas tbody');
+      const tabelaCopas = document.getElementById('tabela-copas').querySelector('tbody');
       tabelaCopas.innerHTML += `
         <tr>
           <td>${nome.value}</td>
@@ -25,7 +25,7 @@ formulario.addEventListener('submit', (event) => {
       break;
     case 'espadas':
       // Adicionando os dados na tabela de espadas
-      const tabelaEspadas = document.querySelector('#tabela-espadas tbody');
+      const tabelaEspadas = document.getElementById('tabela-espadas').querySelector('tbody');
       tabelaEspadas.innerHTML += `
         <tr>
           <td>${nome.value}</td>
@@ -35,7 +35,7 @@ formulario.addEventListener('submit', (event) => {
       break;
     case 'ouros':
       // Adicionando os dados na tabela de ouros
-      const tabelaOuros = document.querySelector('#tabela-ouros tbody');
+      const tabelaOuros = document.getElementById('tabela-ouros').querySelector('tbody');
       tabelaOuros.innerHTML += `
         <tr>
           <td>${nome.value}</td>
@@ -45,7 +45,7 @@ formulario.addEventListener('submit', (event) => {
       break;
     case 'paus':
       // Adicionando os dados na tabela de paus
-      const tabelaPaus = document.querySelector('#tabela-paus tbody');
+      const tabelaPaus = document.getElementById('tabela-paus').querySelector('tbody');
       tabelaPaus.innerHTML += `
         <tr>
           <td>${nome.value}</td>
@@ -63,20 +63,18 @@ formulario.addEventListener('submit', (event) => {
   nome.value = '';
   naipe.value = '';
   valor.value = '';
-});
+}
 
+// função que aumenta o número
+function aumentarNumero() {
+  var numero = parseInt(document.getElementById("numero").value);
+  document.getElementById("numero").value = numero + 1;
+}
 
-
-  // função que aumenta o número
-  function aumentarNumero() {
-    var numero = parseInt(document.getElementById("numero").value);
-    document.getElementById("numero").value = numero + 1;
+// função que diminui o número
+function diminuirNumero() {
+  var numero = parseInt(document.getElementById("numero").value);
+  if (numero > 0) {
+    document.getElementById("numero").value = numero - 1;
   }
-
-  // função que diminui o número
-  function diminuirNumero() {
-    var numero = parseInt(document.getElementById("numero").value);
-    if (numero > 0) {
-      document.getElementById("numero").value = numero - 1;
-    }
-  }
+}
