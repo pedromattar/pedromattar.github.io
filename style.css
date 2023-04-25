@@ -1,4 +1,46 @@
 
+body {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+.container {
+  background-color: #fff;
+  padding: 20px;
+  margin: 50px auto;
+  max-width: 500px;
+  border-radius: 10px;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.naipe-botao {
+  border: none;
+  border-radius: 5px;
+  background-color: #fff;
+  color: #333;
+  padding: 10px 15px;
+  margin: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.botao-vermelho {
+  color: #fff;
+  background-color: #ff0000;
+}
+
+.naipe-botao:hover {
+  background-color: #eee;
+}
+
+.contador {
+  margin-top: 20px;
+}
+
+.contador label {
+  display: block;
+  font
 
 .aba1 {
 	float: left;
