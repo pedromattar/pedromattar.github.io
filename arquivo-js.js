@@ -38,7 +38,8 @@ function enviarFormulario() {
   
   // Obter a tabela correta com base no naipe selecionado
   var tabela = document.getElementById("tabela-" + naipe);
-  var tbody = tabela.querySelector("tbody");
+  var tbody = tabela.getElementsByTagName("tbody")[0];
+  
   
   // Adicionar a nova linha à tabela
   tbody.appendChild(novaLinha);
