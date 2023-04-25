@@ -1,22 +1,22 @@
 
 function selecionaNaipeOuros() {
-  var naipe = "";
-  naipe = "ouros";
+  var noipe = "";
+  noipe = "ouros";
 }
 
 function selecionaNaipeCopas() {
-  var naipe = "";
-  naipe = "copas";
+  var noipe = "";
+  noipe = "copas";
 }
 
 function selecionaNaipePaus() {
-  var naipe = "";
-  naipe = "paus";
+  var noipe = "";
+  noipe = "paus";
 }
 
 function selecionaNaipeEspadas() {
-  var naipe = "";
-  naipe = "espadas";
+  var noipe = "";
+  noipe = "espadas";
 }
 // variável global para armazenar o naipe selecionado
 
@@ -24,6 +24,7 @@ function selecionaNaipeEspadas() {
 function enviarFormulario() {
   // Obter os valores dos campos do formulário
   var nome = document.getElementById("nome").value;
+  var naipe = noipe;
   alert("O naipe selecionado foi: " + naipe);
 
   var numero = document.getElementById("numero").value;
