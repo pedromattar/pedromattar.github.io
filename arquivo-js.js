@@ -4,7 +4,7 @@ const formulario = document.querySelector('#formulario');
 // Capturando os campos do formulário
 const nome = formulario.querySelector('#nome');
 const naipe = formulario.querySelector('#naipe');
-const valor = formulario.querySelector('#valor');
+const valor = formulario.querySelector('#numero');
 
 // Adicionando o evento de submit ao formulário
 formulario.addEventListener('submit', (event) => {
