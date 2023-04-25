@@ -20,7 +20,6 @@ function selecionaNaipeEspadas() {
 function enviarFormulario() {
   // Obter os valores dos campos do formulário
   var nome = document.getElementById("nome").value;
-  alert("O naipe selecionado foi: " + naipe);
   var numero = document.getElementById("numero").value;
   var bebida = document.getElementById("bebida").value;
   
