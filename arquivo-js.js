@@ -1,3 +1,8 @@
+
+document.addEventListener('DOMContentLoaded', function() {
+  //seu código aqui
+
+
 // Capturando o formulário
 const formulario = document.querySelector('#formulario');
 
@@ -72,6 +77,8 @@ formulario.addEventListener('submit', (event) => {
     var numero = parseInt(document.getElementById("numero").value);
     document.getElementById("numero").value = numero + 1;
   }
+  
+  });
 
   // função que diminui o número
   function diminuirNumero() {
