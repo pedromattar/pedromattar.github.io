@@ -1,69 +1,30 @@
-// Capturando o formulário
-const formulario = document.getElementById('formulario');
-
-// Capturando os campos do formulário
-const nome = document.getElementById('nome');
-const naipe = document.getElementById('naipe');
-const valor = document.getElementById('numero');
-
-// Adicionando o evento de submit ao formulário
-function EnviarFormulario() {
-  // Prevenindo o comportamento padrão do formulário de ser submetido
-  event.preventDefault();
-
-  // Verificando qual é o naipe selecionado
-  switch (naipe.value) {
-    case 'copas':
-      // Adicionando os dados na tabela de copas
-      const tabelaCopas = document.getElementById('tabela-copas').querySelector('tbody');
-      tabelaCopas.innerHTML += `
-        <tr>
-          <td>${nome.value}</td>
-          <td>${valor.value}</td>
-        </tr>
-      `;
-      break;
-    case 'espadas':
-      // Adicionando os dados na tabela de espadas
-      const tabelaEspadas = document.getElementById('tabela-espadas').querySelector('tbody');
-      tabelaEspadas.innerHTML += `
-        <tr>
-          <td>${nome.value}</td>
-          <td>${valor.value}</td>
-        </tr>
-      `;
-      break;
-    case 'ouros':
-      // Adicionando os dados na tabela de ouros
-      const tabelaOuros = document.getElementById('tabela-ouros').querySelector('tbody');
-      tabelaOuros.innerHTML += `
-        <tr>
-          <td>${nome.value}</td>
-          <td>${valor.value}</td>
-        </tr>
-      `;
-      break;
-    case 'paus':
-      // Adicionando os dados na tabela de paus
-      const tabelaPaus = document.getElementById('tabela-paus').querySelector('tbody');
-      tabelaPaus.innerHTML += `
-        <tr>
-          <td>${nome.value}</td>
-          <td>${valor.value}</td>
-        </tr>
-      `;
-      break;
-    default:
-      // Caso o naipe selecionado não seja válido, exibe um alerta
-      alert('Naipe inválido!');
-      break;
-  }
-
-  // Limpando os campos do formulário
-  nome.value = '';
-  naipe.value = '';
-  valor.value = '';
+function enviarFormulario() {
+  // Obter os valores dos campos do formulário
+  var nome = document.getElementById("nome").value;
+  var naipe = document.querySelector(".naipe-botao.active").getAttribute("data-naipe");
+  var numero = document.getElementById("numero").value;
+  var bebida = document.getElementById("bebida").value;
+  
+  // Criar uma nova linha para a tabela
+  var novaLinha = document.createElement("tr");
+  var novaCelulaNome = document.createElement("td");
+  var novaCelulaBebida = document.createElement("td");
+  var novaCelulaQuantidade = document.createElement("td");
+  novaCelulaNome.innerHTML = nome;
+  novaCelulaBebida.innerHTML = bebida;
+  novaCelulaQuantidade.innerHTML = numero;
+  novaLinha.appendChild(novaCelulaNome);
+  novaLinha.appendChild(novaCelulaBebida);
+  novaLinha.appendChild(novaCelulaQuantidade);
+  
+  // Obter a tabela correta com base no naipe selecionado
+  var tabela = document.getElementById("tabela-" + naipe);
+  var tbody = tabela.querySelector("tbody");
+  
+  // Adicionar a nova linha à tabela
+  tbody.appendChild(novaLinha);
 }
+
 
 // função que aumenta o número
 function aumentarNumero() {
