@@ -1,1 +1,76 @@
 
+		
+		.aba1 {
+			float: left;
+			width: 33.33%;
+			height: 100vh;
+			background-color: red;
+		}
+
+		.aba2 {
+			float: left;
+			width: 33.33%;
+			height: 100vh;
+			background-color: green;
+		}
+
+		.aba3 {
+			float: left;
+			width: 33.33%;
+			height: 100vh;
+			background-color: blue;
+		}
+		
+		.tabela-naipe {
+		   width: 100%;
+		   margin-bottom: 20px;
+		}
+
+		.tabela-naipe th {
+		   text-align: left;
+		}
+
+		.tabela-naipe {
+		  margin-bottom: 20px;
+		}
+
+		.naipe-bota[data-naipe="copa"]::before {
+		  content: "\2665";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-bota[data-naipe="espada"]::before {
+		  content: "\2660";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-bota[data-naipe="ouro"]::before {
+		  content: "\2666";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-bota[data-naipe="pau"]::before {
+		  content: "\2663";
+		  font-family: Arial, sans-serif;
+		}
+		
+		.naipe-botao[data-naipe="copas"]::before {
+		  content: "\2665";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-botao[data-naipe="espadas"]::before {
+		  content: "\2660";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-botao[data-naipe="ouros"]::before {
+		  content: "\2666";
+		  font-family: Arial, sans-serif;
+		}
+
+		.naipe-botao[data-naipe="paus"]::before {
+		  content: "\2663";
+		  font-family: Arial, sans-serif;
+		}
+
