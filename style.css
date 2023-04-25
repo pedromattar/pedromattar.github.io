@@ -100,9 +100,7 @@ table td.numero {
 
 /* Estilo para as abas */
 .aba {
-  float: left;
-  width: 33.33%;
-  height: 100vh;
+  display: none;
 }
 
 /* Estilo para a aba ativa */
@@ -110,155 +108,59 @@ table td.numero {
   display: block;
 }
 
-/* Estilo para a aba 1 */
-.aba1 {
-  background-color: var(--cor-vermelha);
-}
-
-/* Estilo para a aba 2 */
-.aba2 {
-  background-color: var(--cor-verde);
-}
-
-/* Estilo para a aba 3 */
-.aba3 {
-  background-color: var(--cor-azul);
-}
-
-/* Estilo para o formulário */
-#formulario {
-  margin-top: 20px;
-  padding: 20px;
-background-color: white;
-border-radius: 5px;
-}
-
-/* Estilo para as labels do formulário */
-label {
-display: block;
-margin-bottom: 10px;
-}
-
-/* Estilo para os inputs do formulário */
-input[type="text"] {
-width: 100%;
-padding: 5px;
-border: 1px solid #ccc;
-border-radius: 5px;
-}
-
-/* Estilo para o botão do formulário */
-button[type="submit"] {
-margin-top: 10px;
-}
-
-/* Estilo para o container */
-.container {
-max-width: 600px;
-margin: 0 auto;
-}
-
-/* Estilo para as abas */
-.aba {
-display: none;
-}
-
-/* Estilo para a aba ativa */
-.aba.ativa {
-display: block;
-}
-
 /* Estilo para os botões de navegação das abas */
 .botao-aba {
-background-color: var(--cor-primaria);
-color: white;
-border: none;
-border-radius: 5px;
-padding: 5px 10px;
-cursor: pointer;
+  background-color: var(--cor-primaria);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+/* Estilo para os botões de navegação das abas quando estão ativos */
+.botao-aba.ativo {
+  background-color: var(--cor-secundaria);
 }
 
 /* Estilo para os botões de navegação das abas quando estão ativos */
 .botao-aba.ativo {
 background-color: var(--cor-secundaria);
+color: var(--cor-texto-claro);
+border-bottom: 2px solid var(--cor-texto-claro);
 }
 
-/* Estilo para os botões do naipe */
-.naipe-botao {
-background-color: white;
-color: var(--cor-primaria);
-border: 2px solid var(--cor-primaria);
+/* Estilo para os links dentro das abas */
+.conteudo-aba a {
+color: var(--cor-link);
+text-decoration: none;
 }
 
-/* Estilo para os botões do naipe quando estão selecionados */
-.naipe-botao.selecionado {
-background-color: var(--cor-primaria);
-color: white;
+.conteudo-aba a:hover {
+text-decoration: underline;
 }
 
-/* Estilo para os naipes de bota */
-.naipe-bota::before {
-font-size: 24px;
-margin-right: 5px;
-}
-
-.naipe-bota[data-naipe="copa"]::before {
-content: "\2665";
-font-family: Arial, sans-serif;
-}
-
-.naipe-bota[data-naipe="espada"]::before {
-content: "\2660";
-font-family: Arial, sans-serif;
-}
-
-.naipe-bota[data-naipe="ouro"]::before {
-content: "\2666";
-font-family: Arial, sans-serif;
-}
-
-.naipe-bota[data-naipe="pau"]::before {
-content: "\2663";
-font-family: Arial, sans-serif;
-}
-
-/* Estilo para as tabelas */
-table {
-border-collapse: collapse;
-width: 100%;
-}
-
-/* Estilo para os cabeçalhos das tabelas */
-table thead th {
-background-color: var(--cor-primaria);
-color: white;
-padding: 10px;
-text-align: left;
-}
-
-/* Estilo para as células das tabelas */
-table td {
-border: 1px solid var(--cor-primaria);
+/* Estilo para o conteúdo das abas */
+.conteudo-aba p {
+margin: 0;
 padding: 10px;
 }
 
-/* Estilo para as células de número das tabelas */
-table td.numero {
+/* Estilo para o rodapé */
+.rodape {
+background-color: var(--cor-secundaria);
+color: var(--cor-texto-claro);
+font-size: 12px;
 text-align: center;
+padding: 10px;
 }
 
-/* Estilo para o botão de incremento */
-.contador button:first-of-type {
-margin-right: 5px;
+/* Estilo para os links no rodapé */
+.rodape a {
+color: var(--cor-texto-claro);
+text-decoration: none;
 }
 
-/* Estilo para o botão de decremento */
-.contador button:last-of-type {
-margin-left: 5px;
-}
-
-/* Estilo para o input de número */
-.contador input {
-width: 40px;
-text-align: center;
+.rodape a:hover {
+text-decoration: underline;
 }
