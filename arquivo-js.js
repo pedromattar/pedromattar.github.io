@@ -1,3 +1,5 @@
+
+
 // variável global para armazenar o naipe selecionado
 var naipeSelecionado = "copas";
 
@@ -51,6 +53,7 @@ function enviarFormulario() {
 }
 
 
+alert("O naipe selecionado foi: " + naipe);
 
 
 // função que aumenta o número
