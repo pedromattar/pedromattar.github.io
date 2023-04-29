@@ -13,6 +13,56 @@ body {
   font-family: Arial, sans-serif;
 }
 
+
+@media only screen and (max-width: 600px) {
+
+/* Altera o tamanho do texto */
+body {
+font-size: 14px;
+}
+
+/* Remove a margem inferior das tabelas */
+table {
+margin-bottom: 0;
+}
+
+/* Altera o layout das abas */
+.abas {
+flex-direction: column;
+}
+
+/* Remove o espaço entre as células das tabelas */
+table td {
+padding: 5px;
+}
+
+/* Adiciona uma margem inferior para separar os botões */
+button {
+margin-bottom: 10px;
+}
+
+/* Reduz o tamanho dos botões */
+.naipe-botao {
+padding: 3px 6px;
+}
+
+/* Altera o tamanho do input de número */
+.contador input {
+width: 30px;
+}
+
+/* Altera o layout das abas */
+.botao-aba {
+margin-right: 5px;
+}
+
+/* Adiciona um espaçamento nos links do rodapé */
+.rodape a {
+margin-right: 10px;
+}
+}
+
+
 /* Estilo para os títulos das abas */
 .abas {
   display: flex;
