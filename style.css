@@ -1,232 +1,251 @@
-:root {
-  --cor-de-fundo: #f5f5f5;
-  --cor-primaria: #0099ff;
-  --cor-secundaria: #003399;
-  --cor-vermelha: #ff4444;
-  --cor-verde: #44ff44;
-  --cor-azul: #4444ff;
-}
-
-/* Estilo básico para o body */
-body {
-  background-color: var(--cor-de-fundo);
-  font-family: Arial, sans-serif;
-}
-
-
 @media only screen and (max-width: 600px) {
-
-/* Altera o tamanho do texto */
 body {
 font-size: 14px;
 }
 
-/* Remove a margem inferior das tabelas */
 table {
+margin: 0 auto;
 margin-bottom: 0;
 }
 
-/* Altera o layout das abas */
 .abas {
 flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
-/* Remove o espaço entre as células das tabelas */
 table td {
 padding: 5px;
 }
 
-/* Adiciona uma margem inferior para separar os botões */
 button {
-margin-bottom: 10px;
+margin: 0 auto 10px;
+display: block;
+text-align: center;
 }
 
-/* Reduz o tamanho dos botões */
 .naipe-botao {
 padding: 3px 6px;
+margin: 0 5px;
 }
 
-/* Altera o tamanho do input de número */
 .contador input {
-width: 30px;
+width: 40px;
 }
 
-/* Altera o layout das abas */
 .botao-aba {
 margin-right: 5px;
 }
 
-/* Adiciona um espaçamento nos links do rodapé */
 .rodape a {
-margin-right: 10px;
+display: block;
+margin-bottom: 10px;
+}
+
+.icon-naipe {
+width: 20px;
+height: 20px;
+margin-right: 5px;
+vertical-align: middle;
 }
 }
 
-
-/* Estilo para os títulos das abas */
 .abas {
-  display: flex;
-  justify-content: space-between;
-  background-color: var(--cor-primaria);
-  color: white;
-  padding: 10px;
-}
-
-
-/* Estilo para as tabelas */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 20px; /* Adiciona margem inferior para separar as tabelas */
-}
-
-/* Estilo para as células das tabelas */
-table td {
-  border: 1px solid var(--cor-primaria);
-  padding: 10px;
-  text-align: center;
-}
-
-
-/* Estilo para as abas ativas */
-.abas .ativa {
-  background-color: var(--cor-secundaria);
-}
-
-/* Estilo básico para os botões */
-button {
-  background-color: var(--cor-primaria);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-/* Estilo para os botões do naipe */
-.naipe-botao {
-  background-color: white;
-  color: var(--cor-primaria);
-  border: 2px solid var(--cor-primaria);
-  transition: background-color 0.2s ease-in-out;
-}
-
-/* Estilo para os botões do naipe quando estão selecionados */
-.naipe-botao.selecionado {
-  background-color: var(--cor-primaria);
-  color: white;
-}
-
-/* Estilo para os botões do naipe quando o mouse está em cima */
-.naipe-botao:hover {
-  background-color: var(--cor-primaria);
-  color: white;
-}
-
-/* Estilo para as tabelas */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-/* Estilo para os cabeçalhos das tabelas */
-table thead th {
-  background-color: var(--cor-primaria);
-  color: white;
-  padding: 10px;
-  text-align: left;
-}
-
-/* Estilo para as células das tabelas */
-table td {
-  border: 1px solid var(--cor-primaria);
-  padding: 10px;
-}
-
-/* Estilo para as células de número das tabelas */
-table td.numero {
-  text-align: center;
-}
-
-/* Estilo para o botão de incremento */
-.contador button:first-of-type {
-  margin-right: 5px;
-}
-
-/* Estilo para o botão de decremento */
-.contador button:last-of-type {
-  margin-left: 5px;
-}
-
-/* Estilo para o input de número */
-.contador input {
-  width: 40px;
-  text-align: center;
-}
-
-/* Estilo para as abas */
-.aba {
-  display: none;
-}
-
-/* Estilo para a aba ativa */
-.aba.ativa {
-  display: block;
-}
-
-/* Estilo para os botões de navegação das abas */
-.botao-aba {
-  background-color: var(--cor-primaria);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-/* Estilo para os botões de navegação das abas quando estão ativos */
-.botao-aba.ativo {
-  background-color: var(--cor-secundaria);
-}
-
-/* Estilo para os botões de navegação das abas quando estão ativos */
-.botao-aba.ativo {
-background-color: var(--cor-secundaria);
-color: var(--cor-texto-claro);
-border-bottom: 2px solid var(--cor-texto-claro);
-}
-
-/* Estilo para os links dentro das abas */
-.conteudo-aba a {
-color: var(--cor-link);
-text-decoration: none;
-}
-
-.conteudo-aba a:hover {
-text-decoration: underline;
-}
-
-/* Estilo para o conteúdo das abas */
-.conteudo-aba p {
-margin: 0;
+display: flex;
+justify-content: space-between;
+align-items: center;
+background-color: var(--cor-primaria);
+color: white;
 padding: 10px;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+margin: 0 auto 20px;
+}
+
+table td {
+border: 1px solid var(--cor-primaria);
+padding: 10px;
+text-align: center;
+position: relative;
+}
+
+.tabela-copas td:before {
+content: "";
+position: absolute;
+top: 5px;
+right: 5px;
+background-image: url(copas.png);
+background-repeat: no-repeat;
+width: 20px;
+height: 20px;
+}
+
+.tabela-espadas td:before {
+content: "";
+position: absolute;
+top: 5px;
+right: 5px;
+background-image: url(espadas.png);
+background-repeat: no-repeat;
+width: 20px;
+height: 20px;
+}
+
+.tabela-paus td:before {
+content: "";
+position: absolute;
+top: 5px;
+right: 5px;
+background-image: url(paus.png);
+background-repeat: no-repeat;
+width: 20px;
+height: 20px;
+}
+
+.tabela-ouros td:before {
+content: "";
+position: absolute;
+top: 5px;
+right: 5px;
+background-image: url(ouros.png);
+background-repeat: no-repeat;
+width: 20px;
+height: 20px;
+}
+
+.abas .ativa {
+background-color: var(--cor-secundaria);
+}
+
+button {
+background-color: var(--cor-primaria);
+color: white;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+cursor: pointer;
+}
+
+.naipe-botao {
+background-color: white;
+color: var(--cor-primaria);
+border: 2px solid var(--cor-primaria);
+transition: background-color 0.2s ease-in-out;
+}
+
+.naipe-botao.se.lecionado:before {
+content: '';
+display: inline-block;
+width: 10px;
+height: 10px;
+border-radius: 50%;
+background-color: var(--cor-primaria);
+margin-right: 5px;
 }
 
 /* Estilo para o rodapé */
 .rodape {
-background-color: var(--cor-secundaria);
-color: var(--cor-texto-claro);
-font-size: 12px;
-text-align: center;
+background-color: var(--cor-primaria);
+color: white;
 padding: 10px;
+text-align: center;
 }
 
-/* Estilo para os links no rodapé */
+/* Estilo para os links do rodapé */
 .rodape a {
-color: var(--cor-texto-claro);
-text-decoration: none;
+color: white;
 }
 
-.rodape a:hover {
-text-decoration: underline;
+/* Estilo para o ícone do naipe */
+.naipe {
+display: inline-block;
+width: 20px;
+height: 20px;
+margin-right: 5px;
+background-repeat: no-repeat;
+background-position: center center;
+background-size: contain;
 }
+
+/* Estilo para o ícone do naipe de copas */
+.naipe-copas {
+background-image: url('https://www.example.com/images/naipe-copas.png');
+}
+
+/* Estilo para o ícone do naipe de espadas */
+.naipe-espadas {
+background-image: url('https://www.example.com/images/naipe-espadas.png');
+}
+
+/* Estilo para o ícone do naipe de ouros */
+.naipe-ouros {
+background-image: url('https://www.example.com/images/naipe-ouros.png');
+}
+
+/* Estilo para o ícone do naipe de paus */
+.naipe-paus {
+background-image: url('https://www.example.com/images/naipe-paus.png');
+}
+
+/* Estilo para as tabelas de cada naipe */
+.tabela-copas {
+border-color: var(--cor-vermelha);
+}
+
+.tabela-espadas {
+border-color: var(--cor-azul);
+}
+
+.tabela-ouros {
+border-color: var(--cor-verde);
+}
+
+.tabela-paus {
+border-color: var(--cor-primaria);
+}
+
+/* Estilo para o texto de quantidade restante */
+.restante {
+font-weight: bold;
+}
+
+/* Estilo para o botão de "Zerar" */
+.zerar {
+margin-top: 10px;
+}
+
+/* Estilo para o botão de "Reiniciar" */
+.reiniciar {
+margin-top: 10px;
+margin-left: 5px;
+}
+
+/* Estilo para o botão de "Adicionar" */
+.adicionar {
+margin-top: 10px;
+margin-left: 5px;
+}
+
+/* Estilo para o input de "Quantidade" */
+.quantidade {
+margin-left: 5px;
+}
+
+/* Estilo para a mensagem de erro */
+.erro {
+color: var(--cor-vermelha);
+margin-top: 10px;
+}
+
+@media screen and (max-width: 600px) {
+.naipe-botao {
+width: 100%;
+font-size: 18px;
+}
+}
+
+
+
