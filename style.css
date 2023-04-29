@@ -26,6 +26,32 @@ table {
 margin-bottom: 0;
 }
 
+  
+.naipe-bota {
+  width: 50px; /* ajuste de acordo com o tamanho dos ícones */
+  height: 50px; /* ajuste de acordo com o tamanho dos ícones */
+  background-color: #FFF; /* cor de fundo do cabeçalho da tabela */
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+[data-naipe="copa"] {
+  background-image: url(caminho_para_icone_copas.png);
+}
+
+[data-naipe="espada"] {
+  background-image: url(caminho_para_icone_espadas.png);
+}
+
+[data-naipe="ouro"] {
+  background-image: url(caminho_para_icone_ouros.png);
+}
+
+[data-naipe="pau"] {
+  background-image: url(caminho_para_icone_paus.png);
+}
+
+  
 /* Altera o layout das abas */
 .abas {
 flex-direction: column;
