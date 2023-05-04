@@ -1,288 +1,90 @@
-:root {
-  --cor-de-fundo: #f5f5f5;
-  --cor-primaria: #0099ff;
-  --cor-secundaria: #003399;
-  --cor-vermelha: #ff4444;
-  --cor-verde: #44ff44;
-  --cor-azul: #4444ff;
+/* Definindo um tamanho base para a fonte e o box-sizing */
+html {
+  font-size: 16px;
+  box-sizing: border-box;
 }
 
-/* Estilo básico para o body */
-body {
-  background-color: var(--cor-de-fundo);
-  font-family: Arial, sans-serif;
+/* Resetando algumas propriedades do CSS */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
 }
 
+/* Definindo uma largura máxima para o site */
 .container {
-  max-width: 960px; /* define a largura máxima do container */
-  margin: 0 auto; /* centraliza o container na página */
-  padding: 20px; /* adiciona um espaço interno para o conteúdo */
-  background-color: #f1f1f1; /* define uma cor de fundo para o container */
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 0 20px;
 }
 
-/* estilos para os títulos da página */
-h1, h2, h3 {
-  color: #333; /* define a cor do texto */
-  text-align: center; /* centraliza o texto */
-  margin-bottom: 20px; /* adiciona um espaço abaixo do título */
+/* Definindo um tamanho de fonte menor para dispositivos móveis */
+@media only screen and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
 }
 
-/* estilos para os parágrafos da página */
-p {
-  font-size: 16px; /* define o tamanho da fonte */
-  line-height: 1.5; /* define o espaçamento entre linhas */
-  margin-bottom: 20px; /* adiciona um espaço abaixo do parágrafo */
+/* Ajustando a largura e o espaçamento dos posts */
+.post {
+  margin-bottom: 40px;
 }
 
-/* estilos para os links da página */
-a {
-  color: #e74c3c; /* define a cor do link */
-  text-decoration: none; /* remove o sublinhado do link */
+@media only screen and (max-width: 768px) {
+  .post {
+    width: 100%;
+    margin-bottom: 30px;
+  }
 }
 
-a:hover {
-  text-decoration: underline; /* adiciona um sublinhado quando o link é hoverado */
+/* Ajustando a largura e o espaçamento das imagens */
+.post img {
+  display: block;
+  max-width: 100%;
+  margin: 0 auto;
+  margin-bottom: 20px;
 }
 
-@media only screen and (max-width: 600px) {
-
-/* Altera o tamanho do texto */
-body {
-font-size: 14px;
+@media only screen and (max-width: 768px) {
+  .post img {
+    margin-bottom: 10px;
+  }
 }
 
-/* Remove a margem inferior das tabelas */
-table {
-margin-bottom: 0;
-}
-
-  
-.naipe-bota {
-  width: 50px; /* ajuste de acordo com o tamanho dos ícones */
-  height: 50px; /* ajuste de acordo com o tamanho dos ícones */
-  background-color: #FFF; /* cor de fundo do cabeçalho da tabela */
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-[data-naipe="copa"] {
-  background-image: url(caminho_para_icone_copas.png);
-}
-
-[data-naipe="espada"] {
-  background-image: url(caminho_para_icone_espadas.png);
-}
-
-[data-naipe="ouro"] {
-  background-image: url(caminho_para_icone_ouros.png);
-}
-
-[data-naipe="pau"] {
-  background-image: url(caminho_para_icone_paus.png);
-}
-
-  
-/* Altera o layout das abas */
-.abas {
-flex-direction: column;
-}
-
-/* Remove o espaço entre as células das tabelas */
-table td {
-padding: 5px;
-}
-
-/* Adiciona uma margem inferior para separar os botões */
-button {
-margin-bottom: 10px;
-}
-
-/* Reduz o tamanho dos botões */
-.naipe-botao {
-padding: 3px 6px;
-}
-
-/* Altera o tamanho do input de número */
-.contador input {
-width: 30px;
-}
-
-/* Altera o layout das abas */
-.botao-aba {
-margin-right: 5px;
-}
-
-/* Adiciona um espaçamento nos links do rodapé */
-.rodape a {
-margin-right: 10px;
-}
-}
-
-
-/* Estilo para os títulos das abas */
-.abas {
+/* Ajustando a largura e o espaçamento do menu */
+.navbar {
   display: flex;
   justify-content: space-between;
-  background-color: var(--cor-primaria);
-  color: white;
-  padding: 10px;
+  align-items: center;
+  padding: 20px 0;
 }
 
-
-/* Estilo para as tabelas */
-table {
-  border-collapse: collapse;
-  width: 100%;
-  margin-bottom: 20px; /* Adiciona margem inferior para separar as tabelas */
+@media only screen and (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 0;
+  }
+  
+  .navbar .logo {
+    margin-bottom: 10px;
+  }
+  
+  .navbar .menu {
+    margin-top: 10px;
+  }
 }
 
-/* Estilo para as células das tabelas */
-table td {
-  border: 1px solid var(--cor-primaria);
-  padding: 10px;
-  text-align: center;
+/* Ajustando a largura e o espaçamento dos itens do menu */
+.navbar .menu li {
+  display: inline-block;
+  margin-right: 20px;
 }
 
-
-/* Estilo para as abas ativas */
-.abas .ativa {
-  background-color: var(--cor-secundaria);
-}
-
-/* Estilo básico para os botões */
-button {
-  background-color: var(--cor-primaria);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-/* Estilo para os botões do naipe */
-.naipe-botao {
-  background-color: white;
-  color: var(--cor-primaria);
-  border: 2px solid var(--cor-primaria);
-  transition: background-color 0.2s ease-in-out;
-}
-
-/* Estilo para os botões do naipe quando estão selecionados */
-.naipe-botao.selecionado {
-  background-color: var(--cor-primaria);
-  color: white;
-}
-
-/* Estilo para os botões do naipe quando o mouse está em cima */
-.naipe-botao:hover {
-  background-color: var(--cor-primaria);
-  color: white;
-}
-
-/* Estilo para as tabelas */
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
-
-/* Estilo para os cabeçalhos das tabelas */
-table thead th {
-  background-color: var(--cor-primaria);
-  color: white;
-  padding: 10px;
-  text-align: left;
-}
-
-/* Estilo para as células das tabelas */
-table td {
-  border: 1px solid var(--cor-primaria);
-  padding: 10px;
-}
-
-/* Estilo para as células de número das tabelas */
-table td.numero {
-  text-align: center;
-}
-
-/* Estilo para o botão de incremento */
-.contador button:first-of-type {
-  margin-right: 5px;
-}
-
-/* Estilo para o botão de decremento */
-.contador button:last-of-type {
-  margin-left: 5px;
-}
-
-/* Estilo para o input de número */
-.contador input {
-  width: 40px;
-  text-align: center;
-}
-
-/* Estilo para as abas */
-.aba {
-  display: none;
-}
-
-/* Estilo para a aba ativa */
-.aba.ativa {
-  display: block;
-}
-
-/* Estilo para os botões de navegação das abas */
-.botao-aba {
-  background-color: var(--cor-primaria);
-  color: white;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-/* Estilo para os botões de navegação das abas quando estão ativos */
-.botao-aba.ativo {
-  background-color: var(--cor-secundaria);
-}
-
-/* Estilo para os botões de navegação das abas quando estão ativos */
-.botao-aba.ativo {
-background-color: var(--cor-secundaria);
-color: var(--cor-texto-claro);
-border-bottom: 2px solid var(--cor-texto-claro);
-}
-
-/* Estilo para os links dentro das abas */
-.conteudo-aba a {
-color: var(--cor-link);
-text-decoration: none;
-}
-
-.conteudo-aba a:hover {
-text-decoration: underline;
-}
-
-/* Estilo para o conteúdo das abas */
-.conteudo-aba p {
-margin: 0;
-padding: 10px;
-}
-
-/* Estilo para o rodapé */
-.rodape {
-background-color: var(--cor-secundaria);
-color: var(--cor-texto-claro);
-font-size: 12px;
-text-align: center;
-padding: 10px;
-}
-
-/* Estilo para os links no rodapé */
-.rodape a {
-color: var(--cor-texto-claro);
-text-decoration: none;
-}
-
-.rodape a:hover {
-text-decoration: underline;
+@media only screen and (max-width: 768px) {
+  .navbar .menu li {
+    display: block;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 }
