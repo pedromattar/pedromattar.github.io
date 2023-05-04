@@ -13,6 +13,36 @@ body {
   font-family: Arial, sans-serif;
 }
 
+.container {
+  max-width: 960px; /* define a largura máxima do container */
+  margin: 0 auto; /* centraliza o container na página */
+  padding: 20px; /* adiciona um espaço interno para o conteúdo */
+  background-color: #f1f1f1; /* define uma cor de fundo para o container */
+}
+
+/* estilos para os títulos da página */
+h1, h2, h3 {
+  color: #333; /* define a cor do texto */
+  text-align: center; /* centraliza o texto */
+  margin-bottom: 20px; /* adiciona um espaço abaixo do título */
+}
+
+/* estilos para os parágrafos da página */
+p {
+  font-size: 16px; /* define o tamanho da fonte */
+  line-height: 1.5; /* define o espaçamento entre linhas */
+  margin-bottom: 20px; /* adiciona um espaço abaixo do parágrafo */
+}
+
+/* estilos para os links da página */
+a {
+  color: #e74c3c; /* define a cor do link */
+  text-decoration: none; /* remove o sublinhado do link */
+}
+
+a:hover {
+  text-decoration: underline; /* adiciona um sublinhado quando o link é hoverado */
+}
 
 @media only screen and (max-width: 600px) {
 
