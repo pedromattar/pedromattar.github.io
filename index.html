@@ -1,114 +1,106 @@
 <!DOCTYPE html>
 <html>
 	
-	<head>
-		<title>Meu Site</title>
-		<meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
-		<script src="arquivo-js.js"></script>
-		<link rel="stylesheet" href="style.css">
-
- 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
-
-
-	</head>
-
-	
-	
-
-	<body>
-		<div class="container">
+<head>
+	<title>Meu Site</title>
+	<meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
+	<link href="./css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+	<div class="container">
 		<div class="aba1">
+			<div class="container">
+				<form id="formulario" onsubmit="return false;">
+				<label for="nome">Nome:</label>
+				<input type="text" id="nome" required>
+				<br>
+				<label>Naipe:</label>
+				<br>
+				<button type="button" class="btn btn-primary" onClick="selecionaNaipeCopas()" class="naipe-botao" data-naipe="copas">Copas</button>
+				<button type="button" class="btn btn-primary" onClick="selecionaNaipeEspadas()" class="naipe-botao" data-naipe="espadas">Espadas</button>
+				<button type="button" class="btn btn-primary" onClick="selecionaNaipeOuros()" class="naipe-botao" data-naipe="ouros">Ouros</button>
+				<button type="button" class="btn btn-primary" onClick="selecionaNaipePaus()" class="naipe-botao" data-naipe="paus">Paus</button>
 
-		    <div class="container">
-		      <form id="formulario" onsubmit="return false;">
-			<label for="nome">Nome:</label>
-			<input type="text" id="nome" required><br>
+				<div class="contador">
+				<label for="numero">Número:</label>
+				<button type="button" class="btn btn-success" onclick="aumentarNumero()">↑</button>
+				<input type="text" id="numero" value="0">
+				<button type="button" class="btn btn-success" onclick="diminuirNumero()">↓</button>
+				</div>
 
-			<label>Naipe:</label><br>
-
-			<button type="button" onClick="selecionaNaipeCopas()" class="naipe-botao" data-naipe="copas">Copas</button>
-			<button type="button" onClick="selecionaNaipeEspadas()" class="naipe-botao" data-naipe="espadas">Espadas</button>
-			<button type="button" onClick="selecionaNaipeOuros()" class="naipe-botao" data-naipe="ouros">Ouros</button>
-			<button type="button" onClick="selecionaNaipePaus()" class="naipe-botao" data-naipe="paus">Paus</button>
-
-			<div class="contador">
-			  <label for="numero">Número:</label>
-			  <button type="button" onclick="aumentarNumero()">↑</button>
-			  <input type="text" id="numero" value="0">
-			  <button type="button" onclick="diminuirNumero()">↓</button>
-			</div>
-
-			<label for="bebida">Bebida:</label>
-			<input type="text" id="bebida"><br>
-			<button type="submit" onclick="enviarFormulario()">OK</button>
-		      </form>
+		<label for="bebida">Bebida:</label>
+		<input type="text" id="bebida"><br>
+		<button type="submit" class="btn btn-warning" onclick="enviarFormulario()">OK</button>
+		</form>
 
 
-			</div>
-			</div>
 		</div>
-
-
-			<div class="aba2">  <!--      -----------*****    Conteúdo da SEGUNDA aba  *****-----------           -->
-
-			  <table id="tabela-copas" class="tabela-naipe">
-  <!-- Cabeçalho da tabela -->
-  <thead>
-    <tr>
-      <th class="naipe-bota" data-naipe="copa" class="fas fa-heart" ><img src="caminho_para_icone_copas.png"></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <!-- Corpo da tabela -->
-  <tbody></tbody>
-</table>
-
-<table id="tabela-espadas" class="tabela-naipe">
-  <!-- Cabeçalho da tabela -->
-  <thead>
-    <tr>
-      <th class="naipe-bota" data-naipe="espada" class="fas fa-spade" ><img src="caminho_para_icone_espadas.png"></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <!-- Corpo da tabela -->
-  <tbody></tbody>
-</table>
-
-<table id="tabela-ouros" class="tabela-naipe">
-  <!-- Cabeçalho da tabela -->
-  <thead>
-    <tr>
-      <th class="naipe-bota" data-naipe="ouro" class="fas fa-circle"><img src="caminho_para_icone_ouros.png"></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <!-- Corpo da tabela -->
-  <tbody></tbody>
-</table>
-
-<table id="tabela-paus" class="tabela-naipe">
-  <!-- Cabeçalho da tabela -->
-  <thead>
-    <tr>
-      <th class="naipe-bota" data-naipe="pau" class="fas fa-leaf"><img src="caminho_para_icone_paus.png"></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-  <!-- Corpo da tabela -->
-  <tbody></tbody>
-</table>
-
-			</div>
-
-
-			<div class="aba3">            <!--      -----------*****    Conteúdo da TERCEIRA aba  *****-----------           -->
-
+		</div>
 	</div>
-	</body>
-</html>
 
+
+		<div class="aba2">  <!--      -----------*****    Conteúdo da SEGUNDA aba  *****-----------           -->
+
+		<table id="tabela-copas" class="tabela-naipe">
+	<!-- Cabeçalho da tabela -->
+	<thead>
+		<tr>
+		<th class="naipe-bota" data-naipe="copa" class="fas fa-heart" ><img src="caminho_para_icone_copas.png"></th>
+		<th></th>
+		<th></th>
+		</tr>
+	</thead>
+	<!-- Corpo da tabela -->
+	<tbody></tbody>
+	</table>
+
+	<table id="tabela-espadas" class="tabela-naipe">
+	<!-- Cabeçalho da tabela -->
+	<thead>
+		<tr>
+		<th class="naipe-bota" data-naipe="espada" class="fas fa-spade" ><img src="caminho_para_icone_espadas.png"></th>
+		<th></th>
+		<th></th>
+		</tr>
+	</thead>
+	<!-- Corpo da tabela -->
+	<tbody></tbody>
+	</table>
+
+	<table id="tabela-ouros" class="tabela-naipe">
+	<!-- Cabeçalho da tabela -->
+	<thead>
+		<tr>
+		<th class="naipe-bota" data-naipe="ouro" class="fas fa-circle"><img src="caminho_para_icone_ouros.png"></th>
+		<th></th>
+		<th></th>
+		</tr>
+	</thead>
+	<!-- Corpo da tabela -->
+	<tbody></tbody>
+	</table>
+
+	<table id="tabela-paus" class="tabela-naipe">
+	<!-- Cabeçalho da tabela -->
+	<thead>
+		<tr>
+		<th class="naipe-bota" data-naipe="pau" class="fas fa-leaf"><img src="caminho_para_icone_paus.png"></th>
+		<th></th>
+		<th></th>
+		</tr>
+	</thead>
+	<!-- Corpo da tabela -->
+	<tbody></tbody>
+	</table>
+
+				</div>
+
+
+				<div class="aba3">            <!--      -----------*****    Conteúdo da TERCEIRA aba  *****-----------           -->
+
+		</div>
+	<script src="./js/bootstrap.min.js"></script>
+</body>
+</html>
