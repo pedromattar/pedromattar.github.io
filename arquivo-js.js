@@ -2,7 +2,7 @@
 var naipe = "";
 function selecionaNaipeCopas() {
   naipe = "copas";
-  document.getElementById("imagem-copas").src = "./assets/suit-hearts-fill.svg";
+  document.getElementById("imagem-copas").src = "./assets/suit-heart-fill.svg";
 }
 
 function selecionaNaipeEspadas() {
@@ -17,7 +17,7 @@ function selecionaNaipeOuros() {
 
 function selecionaNaipePaus() {
   naipe = "paus";
-  document.getElementById("imagem-paus").src = "./assets/suit-clubs-fill.svg";
+  document.getElementById("imagem-paus").src = "./assets/suit-club-fill.svg";
 }
 
 function enviarFormulario() {
