@@ -3,21 +3,39 @@ var naipe = "";
 function selecionaNaipeCopas() {
   naipe = "copas";
   document.getElementById("imagem-copas").src = "./assets/suit-heart-fill.svg";
+  
+    document.getElementById("imagem-espadas").src = "./assets/suit-spade.svg";
+    document.getElementById("imagem-ouros").src = "./assets/suit-diamond.svg";
+    document.getElementById("imagem-paus").src = "./assets/suit-club.svg";
+
+
+  
+  
+  
 }
 
 function selecionaNaipeEspadas() {
   naipe = "espadas";
   document.getElementById("imagem-espadas").src = "./assets/suit-spade-fill.svg";
+    document.getElementById("imagem-ouros").src = "./assets/suit-diamond.svg";
+    document.getElementById("imagem-paus").src = "./assets/suit-club.svg";
+    document.getElementById("imagem-copas").src = "./assets/suit-heart.svg";
 }
 
 function selecionaNaipeOuros() {
   naipe = "ouros";
   document.getElementById("imagem-ouros").src = "./assets/suit-diamond-fill.svg";
+      document.getElementById("imagem-espadas").src = "./assets/suit-spade.svg";
+    document.getElementById("imagem-paus").src = "./assets/suit-club.svg";
+    document.getElementById("imagem-copas").src = "./assets/suit-heart.svg";
 }
 
 function selecionaNaipePaus() {
   naipe = "paus";
   document.getElementById("imagem-paus").src = "./assets/suit-club-fill.svg";
+    document.getElementById("imagem-espadas").src = "./assets/suit-spade.svg";
+    document.getElementById("imagem-ouros").src = "./assets/suit-diamond.svg";
+    document.getElementById("imagem-copas").src = "./assets/suit-heart.svg";
 }
 
 function enviarFormulario() {
