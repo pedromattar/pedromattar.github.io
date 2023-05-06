@@ -1,20 +1,23 @@
 // variável global para armazenar o naipe selecionado
 var naipe = "";
-
-function selecionaNaipeOuros() {
-  naipe = "ouros";
-}
-
 function selecionaNaipeCopas() {
   naipe = "copas";
-}
-
-function selecionaNaipePaus() {
-  naipe = "paus";
+  document.getElementById("imagem-copas").src = "./assets/suit-hearts-fill.svg";
 }
 
 function selecionaNaipeEspadas() {
   naipe = "espadas";
+  document.getElementById("imagem-espadas").src = "./assets/suit-spade-fill.svg";
+}
+
+function selecionaNaipeOuros() {
+  naipe = "ouros";
+  document.getElementById("imagem-ouros").src = "./assets/suit-diamond-fill.svg";
+}
+
+function selecionaNaipePaus() {
+  naipe = "paus";
+  document.getElementById("imagem-paus").src = "./assets/suit-clubs-fill.svg";
 }
 
 function enviarFormulario() {
