@@ -1,168 +1,154 @@
 /**
- * Pedromattar.io - Modern Interactive Score & Companion App
- * Full state management, LocalStorage sync, KPI computations & animations.
+ * pedromattar.io - Clean, Fast & Minimalist Scorekeeper
+ * Pure functionality, local storage persistence, zero unnecessary effects.
  */
 
-// Application State
-const STATE_KEY = 'pedromattar_io_data_v2';
-const THEME_KEY = 'pedromattar_io_theme';
+const STORAGE_KEY = 'pedromattar_scorekeeper_v1';
+const THEME_KEY = 'pedromattar_theme_clean';
 
 let currentSuit = 'copas';
 let currentFilter = 'all';
 let searchQuery = '';
 let records = [];
 
-// Initialize App
 document.addEventListener('DOMContentLoaded', () => {
-  loadTheme();
-  loadRecords();
-  bindEvents();
-  renderApp();
+  initTheme();
+  initStorage();
+  initEvents();
+  render();
 });
 
 /* ==========================================================================
-   Theme Management
+   Theme Handling
    ========================================================================== */
-function loadTheme() {
-  const savedTheme = localStorage.getItem(THEME_KEY) || 'dark';
-  document.documentElement.setAttribute('data-theme', savedTheme);
-  updateThemeIcon(savedTheme);
+function initTheme() {
+  const saved = localStorage.getItem(THEME_KEY) || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  updateThemeIcon(saved);
 }
 
 function toggleTheme() {
-  const current = document.documentElement.getAttribute('data-theme') || 'dark';
-  const next = current === 'dark' ? 'light' : 'dark';
+  const current = document.documentElement.getAttribute('data-theme') || 'light';
+  const next = current === 'light' ? 'dark' : 'light';
   document.documentElement.setAttribute('data-theme', next);
   localStorage.setItem(THEME_KEY, next);
   updateThemeIcon(next);
-  showToast(`Modo ${next === 'dark' ? 'Escuro' : 'Claro'} ativado!`, 'info');
 }
 
 function updateThemeIcon(theme) {
   const icon = document.getElementById('theme-icon');
   if (icon) {
-    icon.className = theme === 'dark' ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+    icon.className = theme === 'dark' ? 'fa-regular fa-sun' : 'fa-regular fa-moon';
   }
 }
 
 /* ==========================================================================
-   Storage & State
+   Storage
    ========================================================================== */
-function loadRecords() {
+function initStorage() {
   try {
-    const raw = localStorage.getItem(STATE_KEY);
-    if (raw) {
-      records = JSON.parse(raw);
+    const data = localStorage.getItem(STORAGE_KEY);
+    if (data) {
+      records = JSON.parse(data);
     } else {
-      // Seed initial sample data if completely empty
       records = [
-        { id: '1', nome: 'Pedro', bebida: 'Truco 6', quantidade: 6, naipe: 'copas', timestamp: Date.now() - 3600000 },
-        { id: '2', nome: 'Lucas', bebida: 'Cerveja IPA', quantidade: 2, naipe: 'espadas', timestamp: Date.now() - 2400000 },
-        { id: '3', nome: 'Marcelo', bebida: 'Rodada Ouros', quantidade: 3, naipe: 'ouros', timestamp: Date.now() - 1200000 },
-        { id: '4', nome: 'Pedro', bebida: 'Truco 12', quantidade: 12, naipe: 'paus', timestamp: Date.now() - 600000 }
+        { id: '1', nome: 'Pedro', bebida: 'Truco', quantidade: 3, naipe: 'copas', timestamp: Date.now() - 3600000 },
+        { id: '2', nome: 'Lucas', bebida: 'Partida 1', quantidade: 1, naipe: 'espadas', timestamp: Date.now() - 2400000 },
+        { id: '3', nome: 'Marcelo', bebida: 'Vitória', quantidade: 6, naipe: 'ouros', timestamp: Date.now() - 1200000 },
+        { id: '4', nome: 'Pedro', bebida: 'Doze', quantidade: 12, naipe: 'paus', timestamp: Date.now() - 600000 }
       ];
-      saveRecords();
+      save();
     }
-  } catch (err) {
-    console.error('Error loading records:', err);
+  } catch (e) {
     records = [];
   }
 }
 
-function saveRecords() {
+function save() {
   try {
-    localStorage.setItem(STATE_KEY, JSON.stringify(records));
-  } catch (err) {
-    console.error('Error saving records:', err);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+  } catch (e) {
+    console.error('Save failed:', e);
   }
 }
 
 /* ==========================================================================
-   Event Binding
+   Events
    ========================================================================== */
-function bindEvents() {
-  // Theme Toggle
+function initEvents() {
+  // Theme
   const btnTheme = document.getElementById('btn-theme-toggle');
   if (btnTheme) btnTheme.addEventListener('click', toggleTheme);
 
-  // CSV Export
+  // CSV
   const btnCsv = document.getElementById('btn-export-csv');
-  if (btnCsv) btnCsv.addEventListener('click', exportToCsv);
+  if (btnCsv) btnCsv.addEventListener('click', exportCsv);
 
-  // Reset Data
+  // Reset
   const btnReset = document.getElementById('btn-reset-data');
-  if (btnReset) btnReset.addEventListener('click', resetAllData);
+  if (btnReset) btnReset.addEventListener('click', resetData);
 
-  // Suit Selection
-  const suitCards = document.querySelectorAll('.suit-card');
-  suitCards.forEach(card => {
-    card.addEventListener('click', () => {
-      suitCards.forEach(c => {
-        c.classList.remove('active');
-        c.setAttribute('aria-checked', 'false');
+  // Suit Picker Buttons
+  const suitBtns = document.querySelectorAll('.suit-btn');
+  suitBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      suitBtns.forEach(b => {
+        b.classList.remove('active');
+        b.setAttribute('aria-checked', 'false');
       });
-      card.classList.add('active');
-      card.setAttribute('aria-checked', 'true');
-      currentSuit = card.getAttribute('data-suit');
+      btn.classList.add('active');
+      btn.setAttribute('aria-checked', 'true');
+      currentSuit = btn.getAttribute('data-suit');
     });
   });
 
-  // Stepper Controls
-  const btnAumentar = document.getElementById('btn-aumentar');
-  const btnDiminuir = document.getElementById('btn-diminuir');
-  const inputNumero = document.getElementById('numero');
+  // Counter Stepper
+  const btnInc = document.getElementById('btn-aumentar');
+  const btnDec = document.getElementById('btn-diminuir');
+  const inputNum = document.getElementById('numero');
 
-  if (btnAumentar && inputNumero) {
-    btnAumentar.addEventListener('click', () => {
-      const val = parseInt(inputNumero.value, 10) || 0;
-      inputNumero.value = val + 1;
+  if (btnInc && inputNum) {
+    btnInc.addEventListener('click', () => {
+      const val = parseInt(inputNum.value, 10) || 0;
+      inputNum.value = val + 1;
     });
   }
 
-  if (btnDiminuir && inputNumero) {
-    btnDiminuir.addEventListener('click', () => {
-      const val = parseInt(inputNumero.value, 10) || 0;
-      if (val > 0) inputNumero.value = val - 1;
+  if (btnDec && inputNum) {
+    btnDec.addEventListener('click', () => {
+      const val = parseInt(inputNum.value, 10) || 0;
+      if (val > 0) inputNum.value = val - 1;
     });
   }
 
-  // Quick Preset Chips
-  const presetChips = document.querySelectorAll('.preset-chip');
-  presetChips.forEach(chip => {
-    chip.addEventListener('click', () => {
-      const val = parseInt(chip.getAttribute('data-val'), 10);
-      if (inputNumero) {
-        inputNumero.value = val;
-        showToast(`Valor definido para +${val}`, 'info');
-      }
+  // Presets
+  const presets = document.querySelectorAll('.preset-pill');
+  presets.forEach(p => {
+    p.addEventListener('click', () => {
+      const val = parseInt(p.getAttribute('data-val'), 10);
+      if (inputNum) inputNum.value = val;
     });
   });
 
-  // Form Submit
-  const btnEnviar = document.getElementById('btn-enviar');
-  if (btnEnviar) {
-    btnEnviar.addEventListener('click', handleFormSubmit);
-  }
+  // Submit
+  const btnSubmit = document.getElementById('btn-enviar');
+  if (btnSubmit) btnSubmit.addEventListener('click', addRecord);
 
-  // Search Input
-  const inputSearch = document.getElementById('input-search');
-  if (inputSearch) {
-    inputSearch.addEventListener('input', (e) => {
+  // Search
+  const search = document.getElementById('input-search');
+  if (search) {
+    search.addEventListener('input', (e) => {
       searchQuery = e.target.value.toLowerCase().trim();
       renderTables();
     });
   }
 
   // Filter Tabs
-  const filterTabs = document.querySelectorAll('.filter-tab');
+  const filterTabs = document.querySelectorAll('.tab-btn');
   filterTabs.forEach(tab => {
     tab.addEventListener('click', () => {
-      filterTabs.forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-selected', 'false');
-      });
+      filterTabs.forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      tab.setAttribute('aria-selected', 'true');
       currentFilter = tab.getAttribute('data-filter');
       renderTables();
     });
@@ -170,258 +156,212 @@ function bindEvents() {
 }
 
 /* ==========================================================================
-   Form Submission & Actions
+   Actions
    ========================================================================== */
-function handleFormSubmit() {
-  const nomeInput = document.getElementById('nome');
-  const bebidaInput = document.getElementById('bebida');
-  const numeroInput = document.getElementById('numero');
+function addRecord() {
+  const nameEl = document.getElementById('nome');
+  const descEl = document.getElementById('bebida');
+  const numEl = document.getElementById('numero');
 
-  const nome = nomeInput.value.trim();
-  const bebida = bebidaInput.value.trim() || 'Rodada Geral';
-  const quantidade = parseInt(numeroInput.value, 10) || 1;
+  const nome = nameEl.value.trim();
+  const bebida = descEl.value.trim() || 'Geral';
+  const quantidade = parseInt(numEl.value, 10) || 1;
 
   if (!nome) {
-    showToast('Por favor, informe o nome do jogador!', 'error');
-    nomeInput.focus();
+    nameEl.focus();
+    toast('Informe o nome do jogador');
     return;
   }
 
-  const newRecord = {
-    id: Date.now().toString() + Math.random().toString(36).substr(2, 4),
+  records.unshift({
+    id: Date.now().toString(36) + Math.random().toString(36).substring(2, 5),
     nome,
     bebida,
     quantidade,
     naipe: currentSuit,
     timestamp: Date.now()
-  };
+  });
 
-  records.unshift(newRecord);
-  saveRecords();
-  renderApp();
+  save();
+  render();
 
-  // Reset inputs
-  nomeInput.value = '';
-  bebidaInput.value = '';
-  numeroInput.value = 1;
-  nomeInput.focus();
+  nameEl.value = '';
+  descEl.value = '';
+  numEl.value = 1;
+  nameEl.focus();
 
-  // Celebration Confetti
-  triggerConfetti();
-  showToast(`Registro adicionado para ${nome} em ${currentSuit.toUpperCase()}!`, 'success');
+  toast(`Registrado para ${nome}`);
 }
 
-function deleteRecord(id) {
-  const index = records.findIndex(r => r.id === id);
-  if (index !== -1) {
-    const deleted = records.splice(index, 1)[0];
-    saveRecords();
-    renderApp();
-    showToast(`Registro de ${deleted.nome} removido.`, 'info');
-  }
+function removeRecord(id) {
+  records = records.filter(r => r.id !== id);
+  save();
+  render();
+  toast('Item removido');
 }
 
-function resetAllData() {
-  if (confirm('Deseja realmente limpar todos os registros do aplicativo?')) {
+function resetData() {
+  if (confirm('Deseja limpar todos os registros?')) {
     records = [];
-    saveRecords();
-    renderApp();
-    showToast('Todos os dados foram resetados.', 'info');
+    save();
+    render();
+    toast('Dados limpos');
   }
 }
 
 /* ==========================================================================
-   Rendering & Calculations
+   Render Logic
    ========================================================================== */
-function renderApp() {
-  renderKPIs();
+function render() {
+  renderMetrics();
   renderTables();
 }
 
-function renderKPIs() {
-  const totalPoints = records.reduce((sum, r) => sum + (r.quantidade || 0), 0);
-  const playerScores = {};
-  const suitCounts = { copas: 0, espadas: 0, ouros: 0, paus: 0 };
+function renderMetrics() {
+  const totalPts = records.reduce((s, r) => s + (r.quantidade || 0), 0);
+  const playerMap = {};
+  const suitMap = { copas: 0, espadas: 0, ouros: 0, paus: 0 };
 
   records.forEach(r => {
-    playerScores[r.nome] = (playerScores[r.nome] || 0) + (r.quantidade || 0);
-    if (suitCounts[r.naipe] !== undefined) {
-      suitCounts[r.naipe] += (r.quantidade || 0);
+    playerMap[r.nome] = (playerMap[r.nome] || 0) + (r.quantidade || 0);
+    if (suitMap[r.naipe] !== undefined) {
+      suitMap[r.naipe] += (r.quantidade || 0);
     }
   });
 
-  // Top Player (MVP)
-  let topPlayer = '—';
-  let maxScore = -1;
-  for (const [player, score] of Object.entries(playerScores)) {
-    if (score > maxScore) {
-      maxScore = score;
-      topPlayer = `${player} (${score})`;
+  // Top Player
+  let topName = '—';
+  let topScore = -1;
+  for (const [name, sc] of Object.entries(playerMap)) {
+    if (sc > topScore) {
+      topScore = sc;
+      topName = `${name} (${sc})`;
     }
   }
 
   // Top Suit
   let topSuit = '—';
-  let maxSuitScore = -1;
-  const suitNames = { copas: '♥ Copas', espadas: '♠ Espadas', ouros: '♦ Ouros', paus: '♣ Paus' };
-  for (const [suit, count] of Object.entries(suitCounts)) {
-    if (count > maxSuitScore && count > 0) {
-      maxSuitScore = count;
-      topSuit = suitNames[suit];
+  let topSuitScore = -1;
+  const suitLabels = { copas: 'Copas', espadas: 'Espadas', ouros: 'Ouros', paus: 'Paus' };
+  for (const [s, c] of Object.entries(suitMap)) {
+    if (c > topSuitScore && c > 0) {
+      topSuitScore = c;
+      topSuit = suitLabels[s];
     }
   }
 
-  const uniquePlayers = Object.keys(playerScores).length;
-
-  // DOM Updates
-  const elTopPlayer = document.getElementById('kpi-top-player');
-  const elTotalPoints = document.getElementById('kpi-total-points');
-  const elTopSuit = document.getElementById('kpi-top-suit');
-  const elTotalPlayers = document.getElementById('kpi-total-players');
-
-  if (elTopPlayer) elTopPlayer.textContent = topPlayer;
-  if (elTotalPoints) elTotalPoints.textContent = totalPoints;
-  if (elTopSuit) elTopSuit.textContent = topSuit;
-  if (elTotalPlayers) elTotalPlayers.textContent = uniquePlayers;
+  document.getElementById('kpi-total-points').textContent = totalPts;
+  document.getElementById('kpi-top-player').textContent = topName;
+  document.getElementById('kpi-top-suit').textContent = topSuit;
+  document.getElementById('kpi-total-players').textContent = Object.keys(playerMap).length;
 }
 
 function renderTables() {
   const suits = ['copas', 'espadas', 'ouros', 'paus'];
 
   suits.forEach(suit => {
-    const tableContainer = document.querySelector(`.table-card[data-suit="${suit}"]`);
+    const card = document.querySelector(`.table-box[data-suit="${suit}"]`);
     const tbody = document.querySelector(`#tabela-${suit} tbody`);
-    const emptyState = document.getElementById(`empty-${suit}`);
-    const badgeCount = document.getElementById(`count-${suit}`);
+    const emptyNotice = document.getElementById(`empty-${suit}`);
+    const metaCount = document.getElementById(`count-${suit}`);
 
-    if (!tbody || !tableContainer) return;
+    if (!card || !tbody) return;
 
-    // Filter cards visibility based on top filter tabs
     if (currentFilter !== 'all' && currentFilter !== suit) {
-      tableContainer.style.display = 'none';
+      card.style.display = 'none';
       return;
     } else {
-      tableContainer.style.display = 'flex';
+      card.style.display = 'block';
     }
 
-    // Filter items for this suit
-    const suitRecords = records.filter(r => {
+    const filtered = records.filter(r => {
       if (r.naipe !== suit) return false;
       if (!searchQuery) return true;
       return r.nome.toLowerCase().includes(searchQuery) || (r.bebida && r.bebida.toLowerCase().includes(searchQuery));
     });
 
-    // Update Header Counts
-    const totalSuitPts = suitRecords.reduce((acc, cur) => acc + (cur.quantidade || 0), 0);
-    if (badgeCount) {
-      badgeCount.textContent = `${suitRecords.length} reg • ${totalSuitPts} pts`;
+    const sum = filtered.reduce((s, r) => s + (r.quantidade || 0), 0);
+    if (metaCount) {
+      metaCount.textContent = `${filtered.length} reg • ${sum} pts`;
     }
 
-    // Render Table Rows
     tbody.innerHTML = '';
-    if (suitRecords.length === 0) {
-      if (emptyState) emptyState.style.display = 'block';
+    if (filtered.length === 0) {
+      if (emptyNotice) emptyNotice.style.display = 'block';
     } else {
-      if (emptyState) emptyState.style.display = 'none';
+      if (emptyNotice) emptyNotice.style.display = 'none';
 
-      suitRecords.forEach(record => {
-        const tr = document.createElement('tr');
-        const initial = (record.nome || '?').charAt(0).toUpperCase();
-
-        tr.innerHTML = `
-          <td>
-            <div class="player-cell">
-              <span class="player-avatar">${initial}</span>
-              <span>${escapeHtml(record.nome)}</span>
-            </div>
-          </td>
-          <td>
-            <span class="item-badge">${escapeHtml(record.bebida)}</span>
-          </td>
-          <td>
-            <span class="score-pill">+${record.quantidade}</span>
-          </td>
+      filtered.forEach(r => {
+        const row = document.createElement('tr');
+        row.innerHTML = `
+          <td><span class="player-name">${escape(r.nome)}</span></td>
+          <td><span class="item-desc">${escape(r.bebida)}</span></td>
+          <td><span class="score-badge">+${r.quantidade}</span></td>
           <td style="text-align: right;">
-            <button type="button" class="btn-delete-row" title="Excluir registro" onclick="deleteRecord('${record.id}')">
+            <button type="button" class="btn-del" title="Remover" onclick="removeRecord('${r.id}')">
               <i class="fa-solid fa-xmark"></i>
             </button>
           </td>
         `;
-        tbody.appendChild(tr);
+        tbody.appendChild(row);
       });
     }
   });
 }
 
 /* ==========================================================================
-   Export to CSV
+   CSV Export
    ========================================================================== */
-function exportToCsv() {
+function exportCsv() {
   if (records.length === 0) {
-    showToast('Não há dados para exportar.', 'error');
+    toast('Sem dados para exportar');
     return;
   }
 
-  const header = ['ID', 'Data/Hora', 'Naipe', 'Jogador', 'Descricao_Bebida', 'Pontos'];
-  const rows = records.map(r => [
+  const header = ['ID', 'Data', 'Naipe', 'Jogador', 'Descricao', 'Pontos'];
+  const lines = records.map(r => [
     r.id,
-    new Date(r.timestamp).toLocaleString('pt-BR'),
+    new Date(r.timestamp).toISOString().split('T')[0],
     r.naipe,
     `"${r.nome.replace(/"/g, '""')}"`,
     `"${r.bebida.replace(/"/g, '""')}"`,
     r.quantidade
   ]);
 
-  const csvContent = 'data:text/csv;charset=utf-8,' + [header.join(','), ...rows.map(e => e.join(','))].join('\n');
-  const encodedUri = encodeURI(csvContent);
-  const link = document.createElement('a');
-  link.setAttribute('href', encodedUri);
-  link.setAttribute('download', `pedromattar_io_${Date.now()}.csv`);
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-
-  showToast('Arquivo CSV baixado com sucesso!', 'success');
+  const csv = [header.join(','), ...lines.map(l => l.join(','))].join('\n');
+  const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `scorekeeper_${Date.now()}.csv`;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast('CSV exportado');
 }
 
 /* ==========================================================================
-   Utilities: Confetti & Toast
+   Toast & Utils
    ========================================================================== */
-function triggerConfetti() {
-  if (typeof confetti === 'function') {
-    confetti({
-      particleCount: 50,
-      spread: 70,
-      origin: { y: 0.75 },
-      colors: ['#a855f7', '#ff2a6d', '#6366f1', '#10b981', '#f59e0b']
-    });
-  }
-}
+function toast(msg) {
+  const wrap = document.getElementById('toast-wrap');
+  if (!wrap) return;
 
-function showToast(message, type = 'info') {
-  const container = document.getElementById('toast-container');
-  if (!container) return;
-
-  const toast = document.createElement('div');
-  toast.className = 'toast';
-
-  let icon = 'fa-info-circle';
-  if (type === 'success') icon = 'fa-circle-check';
-  if (type === 'error') icon = 'fa-circle-exclamation';
-
-  toast.innerHTML = `<i class="fa-solid ${icon}"></i><span>${escapeHtml(message)}</span>`;
-  container.appendChild(toast);
+  const t = document.createElement('div');
+  t.className = 'toast-msg';
+  t.textContent = msg;
+  wrap.appendChild(t);
 
   setTimeout(() => {
-    toast.style.transition = 'opacity 0.4s ease, transform 0.4s ease';
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(60px)';
-    setTimeout(() => toast.remove(), 400);
-  }, 3200);
+    t.style.opacity = '0';
+    t.style.transition = 'opacity 0.2s ease';
+    setTimeout(() => t.remove(), 200);
+  }, 2200);
 }
 
-function escapeHtml(string) {
-  const div = document.createElement('div');
-  div.textContent = string;
-  return div.innerHTML;
+function escape(str) {
+  const d = document.createElement('div');
+  d.textContent = str;
+  return d.innerHTML;
 }
