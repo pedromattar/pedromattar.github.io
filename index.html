@@ -1,146 +1,293 @@
 <!DOCTYPE html>
-<html data-bs-theme="light">
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pedro Mattar | IO - Card & Score Companion</title>
+  <meta name="description" content="Dashboard interativo para contagem de pontos, partidas de truco e rodadas com design moderno em glassmorphism.">
+  <meta name="theme-color" content="#0f172a">
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Canvas Confetti Library -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js" defer></script>
+</head>
+<body>
 
-	<head>
-		<title>Meu Site</title>
-		<meta http-equiv="Permissions-Policy" content="interest-cohort=()" />
-		<link href="./css/bootstrap.min.css" rel="stylesheet">
-		<link rel="stylesheet" href="style.css">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-	</head>
-	<body>
-		<div class="container mt-4 d-flex justify-content-center align-items-center">
-			<div class="aba1">
-				<div class="container">
-					<form id="formulario" onsubmit="return false;">
-						<div class="p-3 bg-danger rounded">
-							
-							<label for="nome" class="text-white rounded" placeholder="Nome" ></label>
-							
-							<input type="text" id="nome" required>
-						</div>
-						<br>
-						<div class="mt-2">
-							<button type="button" class="btn btn-primary"
-								onClick="selecionaNaipeCopas()" class="naipe-botao" data-naipe="copas">
-								<img id="imagem-copas" src="./assets/suit-heart.svg" alt="Bootstrap" width="32" height="32">
-							</button>
-							<button type="button" class="btn btn-primary"
-								onClick="selecionaNaipeEspadas()" class="naipe-botao"
-								data-naipe="espadas">
-								<img id="imagem-espadas" src="./assets/suit-spade.svg" alt="Bootstrap" width="32"
-									height="32">
-							</button>
-							<button type="button" class="btn btn-primary"
-								onClick="selecionaNaipeOuros()" class="naipe-botao" data-naipe="ouros">
-								<img id="imagem-ouros" src="./assets/suit-diamond.svg" alt="Bootstrap" width="32"
-									height="32">
-							</button>
-							<button type="button" class="btn btn-primary"
-								onClick="selecionaNaipePaus()" class="naipe-botao" data-naipe="paus">
-								<img id="imagem-paus" src="./assets/suit-club.svg" alt="Bootstrap" width="32"
-									height="32">
+  <!-- Ambient Light Orbs -->
+  <div class="bg-ambient-orb orb-1"></div>
+  <div class="bg-ambient-orb orb-2"></div>
+  <div class="bg-ambient-orb orb-3"></div>
 
-							</button>
-						</div>
+  <div class="app-wrapper">
+    <!-- Header Navigation -->
+    <header class="app-header glass-panel">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div>
+          <h1 class="brand-title">pedromattar.io</h1>
+          <span class="brand-tag">Game & Party Hub</span>
+        </div>
+      </div>
 
+      <div class="header-actions">
+        <button id="btn-export-csv" class="btn-icon" title="Exportar para CSV" aria-label="Exportar para CSV">
+          <i class="fa-solid fa-file-csv"></i>
+        </button>
+        <button id="btn-reset-data" class="btn-icon" title="Limpar todos os dados" aria-label="Limpar dados">
+          <i class="fa-solid fa-trash-can"></i>
+        </button>
+        <button id="btn-theme-toggle" class="btn-icon" title="Alternar Modo Escuro/Claro" aria-label="Alternar Tema">
+          <i class="fa-solid fa-sun" id="theme-icon"></i>
+        </button>
+      </div>
+    </header>
 
-						<div class="contador mt-2">
-							<button type="button" class="btn btn-success" onclick="aumentarNumero()">↑</button>
-							<input type="text" id="numero" value="0">
-							<button type="button" class="btn btn-success" onclick="diminuirNumero()">↓</button>
-						</div>
+    <!-- Top KPI Stats Banner -->
+    <section class="stats-grid" aria-label="Estatísticas Gerais">
+      <div class="stat-card glass-panel">
+        <div class="stat-icon" style="background: rgba(139, 92, 246, 0.15); color: #a855f7;">
+          <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Líder / MVP</div>
+          <div class="stat-value" id="kpi-top-player">—</div>
+        </div>
+      </div>
 
-						<div class="mt-2">
-							<label for="bebida" placeholder="Bebida"></label>
-							<input type="text" id="bebida"><br>
-						</div>
+      <div class="stat-card glass-panel">
+        <div class="stat-icon" style="background: rgba(16, 185, 129, 0.15); color: #10b981;">
+          <i class="fa-solid fa-bolt"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Total de Pontos</div>
+          <div class="stat-value" id="kpi-total-points">0</div>
+        </div>
+      </div>
 
+      <div class="stat-card glass-panel">
+        <div class="stat-icon" style="background: rgba(255, 42, 109, 0.15); color: #ff2a6d;">
+          <i class="fa-solid fa-heart"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Naipe Destaque</div>
+          <div class="stat-value" id="kpi-top-suit">—</div>
+        </div>
+      </div>
 
-						<button type="submit" class="btn btn-warning"
-							onclick="enviarFormulario()">OK</button>
-					</form>
+      <div class="stat-card glass-panel">
+        <div class="stat-icon" style="background: rgba(245, 158, 11, 0.15); color: #f59e0b;">
+          <i class="fa-solid fa-users"></i>
+        </div>
+        <div class="stat-info">
+          <div class="stat-label">Jogadores</div>
+          <div class="stat-value" id="kpi-total-players">0</div>
+        </div>
+      </div>
+    </section>
 
+    <!-- Action Center: Glass Form -->
+    <main class="action-center glass-panel">
+      <div class="section-header">
+        <h2 class="section-title">Novo Registro de Rodada</h2>
+        <p class="section-desc">Selecione o naipe, indique o jogador e adicione a pontuação ou rodada.</p>
+      </div>
 
-				</div>
-			</div>
-		</div>
-		
-		
-		<div class="container mt-4 d-flex justify-content-center align-items-center" >
-			<table id="tabela-copas" class="tabela-naipe">
-				<!-- Cabeçalho da tabela -->
-				<thead>
-					<tr>
-						<th class="naipe-bota" data-naipe="copa" class="fas fa-heart">
-						<img src="./assets/suit-heart-fill.svg" alt="Bootstrap" width="32" height="32">
-						</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<!-- Corpo da tabela -->
-				<tbody></tbody>
-			</table>
-		</div>
-		
-		<div class="container mt-4 d-flex justify-content-center align-items-center" >
-			<table id="tabela-espadas" class="tabela-naipe">
-				<!-- Cabeçalho da tabela -->
-				<thead>
-					<tr>
-						<th class="naipe-bota" data-naipe="espada" class="fas fa-spade">						
-							<img src="./assets/suit-spade-fill.svg" alt="Bootstrap" width="32" height="32">
-						</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<!-- Corpo da tabela -->
-				<tbody></tbody>
-			</table>
+      <form id="formulario" class="entry-form" onsubmit="return false;">
+        <!-- Player Name Input -->
+        <div class="form-group">
+          <label for="nome" class="form-label">Nome do Jogador</label>
+          <input type="text" id="nome" class="input-glass" placeholder="Ex: Pedro, Lucas, Marcelo..." required autocomplete="off">
+        </div>
 
-		</div>
-		
-		<div class="container mt-4 d-flex justify-content-center align-items-center" >
-			<table id="tabela-ouros" class="tabela-naipe">
-				<!-- Cabeçalho da tabela -->
-				<thead>
-					<tr>
-						<th class="naipe-bota" data-naipe="ouro" class="fas fa-circle">
-							<img src="./assets/suit-diamond-fill.svg" alt="Bootstrap" width="32" height="32">
-						</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<!-- Corpo da tabela -->
-				<tbody></tbody>
-			</table>
-		</div>
-		
-		<div class="container mt-4 d-flex justify-content-center align-items-center" >
-			<table id="tabela-paus" class="tabela-naipe">
-				<!-- Cabeçalho da tabela -->
-				<thead>
-					<tr>
-						<th class="naipe-bota" data-naipe="pau" class="fas fa-leaf">
-							<img src="./assets/suit-club-fill.svg" alt="Bootstrap" width="32" height="32">
-						</th>
-						<th></th>
-						<th></th>
-					</tr>
-				</thead>
-				<!-- Corpo da tabela -->
-				<tbody></tbody>
-			</table>
+        <!-- Item / Drink / Round Description -->
+        <div class="form-group">
+          <label for="bebida" class="form-label">Descrição / Bebida / Rodada</label>
+          <input type="text" id="bebida" class="input-glass" placeholder="Ex: Cerveja, Truco 6, Vitória..." required autocomplete="off">
+        </div>
 
-		</div>
+        <!-- 4-Suit Selection Grid -->
+        <div class="suit-selector-wrapper">
+          <div class="form-label" style="margin-bottom: 8px;">Selecione o Naipe</div>
+          <div class="suit-grid" role="radiogroup" aria-label="Seleção de Naipe">
+            <div class="suit-card active" data-suit="copas" role="radio" aria-checked="true" tabindex="0">
+              <span class="suit-icon">♥</span>
+              <span class="suit-name">Copas</span>
+            </div>
+            <div class="suit-card" data-suit="espadas" role="radio" aria-checked="false" tabindex="0">
+              <span class="suit-icon">♠</span>
+              <span class="suit-name">Espadas</span>
+            </div>
+            <div class="suit-card" data-suit="ouros" role="radio" aria-checked="false" tabindex="0">
+              <span class="suit-icon">♦</span>
+              <span class="suit-name">Ouros</span>
+            </div>
+            <div class="suit-card" data-suit="paus" role="radio" aria-checked="false" tabindex="0">
+              <span class="suit-icon">♣</span>
+              <span class="suit-name">Paus</span>
+            </div>
+          </div>
+        </div>
 
+        <!-- Counter Stepper & Quick Presets -->
+        <div class="form-group" style="grid-column: 1 / -1;">
+          <label for="numero" class="form-label">Quantidade / Pontos</label>
+          <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+            <div class="counter-box">
+              <button type="button" id="btn-diminuir" class="counter-btn" aria-label="Diminuir valor">−</button>
+              <input type="number" id="numero" class="counter-input" value="1" min="0" max="999">
+              <button type="button" id="btn-aumentar" class="counter-btn" aria-label="Aumentar valor">+</button>
+            </div>
 
-		<div class="aba3"> <!--      -----------*****    Conteúdo da TERCEIRA aba  *****-----------           -->
-		</div>
-		<script src="./js/bootstrap.min.js"></script>
-		<script src="./js/arquivo-js.js"></script>
-	</body>
+            <div class="presets-container">
+              <button type="button" class="preset-chip" data-val="1">+1 Ponto</button>
+              <button type="button" class="preset-chip" data-val="3">+3 Truco</button>
+              <button type="button" class="preset-chip" data-val="6">+6 Seis</button>
+              <button type="button" class="preset-chip" data-val="12">+12 Doze</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="button" id="btn-enviar" class="btn-submit-main">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>Adicionar Registro</span>
+        </button>
+      </form>
+    </main>
+
+    <!-- Toolbar: Search & Suit Filter -->
+    <section class="toolbar-section">
+      <div class="search-box">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="input-search" class="search-input" placeholder="Pesquisar por jogador ou item...">
+      </div>
+
+      <div class="filter-tabs" role="tablist">
+        <button class="filter-tab active" data-filter="all" role="tab" aria-selected="true">Todos</button>
+        <button class="filter-tab" data-filter="copas" role="tab" aria-selected="false">♥ Copas</button>
+        <button class="filter-tab" data-filter="espadas" role="tab" aria-selected="false">♠ Espadas</button>
+        <button class="filter-tab" data-filter="ouros" role="tab" aria-selected="false">♦ Ouros</button>
+        <button class="filter-tab" data-filter="paus" role="tab" aria-selected="false">♣ Paus</button>
+      </div>
+    </section>
+
+    <!-- 4 Suit Tables Grid -->
+    <section class="suit-tables-grid" id="tables-container">
+      <!-- Copas Table Card -->
+      <div class="table-card glass-panel" data-suit="copas">
+        <div class="table-header">
+          <div class="table-title-group">
+            <div class="table-suit-badge">♥</div>
+            <h3 class="table-title">Copas</h3>
+          </div>
+          <span class="table-badge-count" id="count-copas">0 reg • 0 pts</span>
+        </div>
+        <table class="custom-table" id="tabela-copas">
+          <thead>
+            <tr>
+              <th>Jogador</th>
+              <th>Item / Rodada</th>
+              <th>Pontos</th>
+              <th style="width: 40px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty-state" id="empty-copas">Nenhum registro em Copas</div>
+      </div>
+
+      <!-- Espadas Table Card -->
+      <div class="table-card glass-panel" data-suit="espadas">
+        <div class="table-header">
+          <div class="table-title-group">
+            <div class="table-suit-badge">♠</div>
+            <h3 class="table-title">Espadas</h3>
+          </div>
+          <span class="table-badge-count" id="count-espadas">0 reg • 0 pts</span>
+        </div>
+        <table class="custom-table" id="tabela-espadas">
+          <thead>
+            <tr>
+              <th>Jogador</th>
+              <th>Item / Rodada</th>
+              <th>Pontos</th>
+              <th style="width: 40px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty-state" id="empty-espadas">Nenhum registro em Espadas</div>
+      </div>
+
+      <!-- Ouros Table Card -->
+      <div class="table-card glass-panel" data-suit="ouros">
+        <div class="table-header">
+          <div class="table-title-group">
+            <div class="table-suit-badge">♦</div>
+            <h3 class="table-title">Ouros</h3>
+          </div>
+          <span class="table-badge-count" id="count-ouros">0 reg • 0 pts</span>
+        </div>
+        <table class="custom-table" id="tabela-ouros">
+          <thead>
+            <tr>
+              <th>Jogador</th>
+              <th>Item / Rodada</th>
+              <th>Pontos</th>
+              <th style="width: 40px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty-state" id="empty-ouros">Nenhum registro em Ouros</div>
+      </div>
+
+      <!-- Paus Table Card -->
+      <div class="table-card glass-panel" data-suit="paus">
+        <div class="table-header">
+          <div class="table-title-group">
+            <div class="table-suit-badge">♣</div>
+            <h3 class="table-title">Paus</h3>
+          </div>
+          <span class="table-badge-count" id="count-paus">0 reg • 0 pts</span>
+        </div>
+        <table class="custom-table" id="tabela-paus">
+          <thead>
+            <tr>
+              <th>Jogador</th>
+              <th>Item / Rodada</th>
+              <th>Pontos</th>
+              <th style="width: 40px;"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <div class="empty-state" id="empty-paus">Nenhum registro em Paus</div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <p>Desenvolvido com carinho para <a href="https://github.com/pedromattar" target="_blank" rel="noopener">Pedro Mattar</a> • Hospedado no GitHub Pages</p>
+    </footer>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toast-container" aria-live="polite"></div>
+
+  <!-- Main JavaScript File -->
+  <script src="arquivo-js.js"></script>
+</body>
 </html>
